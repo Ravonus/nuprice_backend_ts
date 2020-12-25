@@ -1,0 +1,11 @@
+{
+  "env": "development",
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "user": "nuprice_ts",
+    "db": "nuprice_ts",
+    "pw": "MyNuPricePW1!"
+  },
+  "cookieName": "nuprice"
+}

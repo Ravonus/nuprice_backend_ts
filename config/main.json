@@ -1,0 +1,25 @@
+{
+  "mysql-host": "localhost",
+  "mysql-user": "root",
+
+  "mysql-db": "nuprice_dev",
+  "NuPrice": {
+    "ticket": 14,
+    "proxyInfo": "lum-customer-hl_d1807418-zone-static-route_err-pass_dyn:sujj44qdbqmu",
+    "versions": {
+      "public": "3.2.0-beta",
+      "development": "3.1.8-beta"
+    },
+    "files": {
+      "public": ["app.asar.unpacked/node_modules"],
+      "development": ["app.asar.unpacked/node_modules"]
+    }
+  },
+  "express": {
+    "port": "1337",
+    "minify": false,
+    "jwt": "1231d9132a",
+    "cssMinify": false,
+    "signUp": false
+  }
+}
