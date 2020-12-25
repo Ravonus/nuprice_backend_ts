@@ -34,7 +34,7 @@ passport.use(
       // find a user whose email is the same as the forms email
       // we are checking to see if the user trying to login already exists
 
-      const { name } = req.body.name;
+      const { name } = req.body;
 
       if (!name) return done("Need name");
 
@@ -84,7 +84,7 @@ passport.use(
 
           console.log(gumroad.body);
 
-          newUser.plan = gumroad.body.purchase.recurrence === "yearly" ? 1 : 0;
+          newUser.plan = gumroad.body.purchase.recurrence === "yearly" ? 1 : 2;
           newUser.gumroad = gumroad.body;
           newUser.affiliate = gumroad.body.purchase.affiliate;
           newUser.key = req.body.key;

@@ -30,8 +30,13 @@ Object.keys(models).map((key: string) => {
     mod.belongsToMany(models.User, { through: "groupUsers" });
   }
 
+  if (key === "Payment") {
+    mod.belongsTo(models.User);
+  }
+
   if (key === "User") {
     mod.hasMany(models.Session);
+    mod.hasMany(models.Payment);
     mod.belongsToMany(models.Group, { through: "groupUsers" });
   }
 });
