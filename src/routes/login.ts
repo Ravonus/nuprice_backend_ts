@@ -7,6 +7,8 @@
 
 import { Router } from "express";
 import passport from "passport";
+import dayjs from "dayjs";
+import { subscriptionCheck } from "../modules/checkGumroadSub";
 
 function route(router: Router) {
   router.post(
@@ -15,8 +17,17 @@ function route(router: Router) {
 
     async function (req: any, res: any) {
       res.setHeader("Content-Type", "application/json");
+      let sub;
+      if (req.user.key) sub = await subscriptionCheck(req, res, true);
+      else {
+        const expired = dayjs().diff(req.user.expirationDate, "ms");
 
-      res.end(JSON.stringify(req.user));
+        if (expired > 0) sub = { subscription: false };
+        else sub = { subscription: true };
+      }
+
+      delete req.user.dataValues.gumroad;
+      res.end(JSON.stringify({ ...req.user.dataValues, ...sub }));
     }
   );
 }

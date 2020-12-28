@@ -3,11 +3,12 @@ import needle from "needle";
 
 export function isAuthenticated(router: Router, path: string) {
   return router.use(path, async function (req: any, res: any, next: any) {
+    if (req.isAuthenticated()) return next("route");
+
     if (req.query.auth) {
-      console.log(req.query.auth);
       const info = await needle(
         "post",
-        `http://vlogtoblog.website/app/authCheck?auth=${req.query.auth.trim()}`,
+        `https://vlogtoblog.website/app/authCheck?auth=${req.query.auth.trim()}`,
         { json: true }
       );
 
@@ -17,7 +18,6 @@ export function isAuthenticated(router: Router, path: string) {
       }
     }
 
-    if (req.isAuthenticated()) return next("route");
-    else return next(true);
+    return next(true);
   });
 }

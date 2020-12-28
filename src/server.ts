@@ -32,8 +32,8 @@ async function startExpress() {
   const expressSession = session({
     name: cookieName,
     secret: cookieName,
-    resave: false,
-    saveUninitialized: false,
+    cookie: { expires: new Date(Date.now() + 3600 * 1000 * 24 * 365 * 10) },
+    //saveUninitialized: false,
   });
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
