@@ -21,11 +21,17 @@ modelsFileList.map((model) => {
 });
 
 Object.keys(models).map((key: string) => {
+  console.log(key);
   const mod = models[key];
 
-  if (key === "Session") {
+  // if (key === "Session") {
+  //   mod.belongsTo(models.User);
+  // }
+
+  if (key === "Device") {
     mod.belongsTo(models.User);
   }
+
   if (key === "Group") {
     mod.belongsToMany(models.User, { through: "groupUsers" });
   }
@@ -35,8 +41,9 @@ Object.keys(models).map((key: string) => {
   }
 
   if (key === "User") {
-    mod.hasMany(models.Session);
+    // mod.hasMany(models.Session);
     mod.hasMany(models.Payment);
+    mod.hasMany(models.Device);
     mod.belongsToMany(models.Group, { through: "groupUsers" });
   }
 });

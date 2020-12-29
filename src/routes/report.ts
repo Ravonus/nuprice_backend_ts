@@ -5,8 +5,8 @@ import mailer from "../modules/mail";
 import { isAuthenticated } from "../middleware/express/isAuthenticated";
 
 function route(router: Router) {
-  isAuthenticated(router, "/app/report"),
-    router.route("/app/report").post(async (req: any, res) => {
+  isAuthenticated(router, "/report"),
+    router.route("/report").post(async (req: any, res) => {
       let body, answers, ticket;
       if (req.query.json) {
         body = JSON.parse(req.query.json);

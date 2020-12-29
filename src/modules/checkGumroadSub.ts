@@ -6,11 +6,13 @@ import needle from "needle";
 
 let Payment: any;
 let User: any;
+let Device: any;
 
 (async () => {
   const models = await grabModels();
   Payment = models.Payment;
   User = models.User;
+  Device = models.Device;
 })();
 
 async function invoice(info: any, userId: string, where: any, jsdate: any) {
@@ -41,7 +43,8 @@ async function invoice(info: any, userId: string, where: any, jsdate: any) {
 export async function subscriptionCheck(
   req: any,
   res: Response,
-  returnData?: boolean
+  returnData?: boolean,
+  skipDevice?: boolean
 ) {
   if (req.user.key) {
     const gumroad: any = await needle(
@@ -87,7 +90,35 @@ export async function subscriptionCheck(
         invoice(info, req.user.id, where, oneMonth);
       }
       if (returnData) return { subscription: true };
-      else return res.end(JSON.stringify({ subscription: true }));
+      else {
+        if (req.user.type === "single") {
+          if (!req.body.device)
+            return res
+              .status(500)
+              .send(JSON.stringify({ error: "Need device" }));
+          const where = {
+            userId: req.user.id,
+            ...req.body.device,
+          };
+
+          const device = await Device.findOne({
+            where,
+          });
+
+          if (device) return res.end(JSON.stringify({ subscription: true }));
+          else
+            return res.status(402).send(
+              JSON.stringify({
+                error: "Payment required",
+                reason:
+                  "This device is not authorized. Upgrade to multi user mode",
+              })
+            );
+        }
+
+        if (req.user.type === "multi")
+          return res.end(JSON.stringify({ subscription: true }));
+      }
     } else {
       if (returnData) return { subscription: false };
       else return res.status(500).json({ subscription: false });

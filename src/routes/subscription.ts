@@ -11,10 +11,18 @@ import needle from "needle";
 
 import { isAuthenticated } from "../middleware/express/isAuthenticated";
 import { subscriptionCheck } from "../modules/checkGumroadSub";
+import { grabModels } from "../database";
+
+let Device: any;
+
+(async () => {
+  const models = await grabModels();
+  Device = models.Device;
+})();
 
 function route(router: Router) {
   isAuthenticated(router, "/subscription"),
-    router.get("/subscription", async function (req: any, res: any) {
+    router.post("/subscription", async function (req: any, res: any) {
       res.setHeader("Content-Type", "application/json");
 
       if (req.user.key) {
@@ -25,7 +33,31 @@ function route(router: Router) {
       if (expired > 0)
         res.status(402).send(JSON.stringify({ error: "Payment required" }));
 
-      res.end(JSON.stringify({ subscription: true }));
+      if (req.user.type === "single") {
+        if (!req.body.device)
+          return res.status(500).send(JSON.stringify({ error: "Need device" }));
+        const where = {
+          userId: req.user.id,
+          ...req.body.device,
+        };
+        console.log(where);
+        const device = await Device.findOne({
+          where,
+        });
+
+        if (device) return res.end(JSON.stringify({ subscription: true }));
+        else
+          return res.status(402).send(
+            JSON.stringify({
+              error: "Payment required",
+              reason:
+                "This device is not authorized. Upgrade to multi user mode",
+            })
+          );
+      }
+
+      if (req.user.type === "multi")
+        res.end(JSON.stringify({ subscription: true }));
     });
 }
 

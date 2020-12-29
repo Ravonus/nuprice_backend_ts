@@ -8,7 +8,17 @@ import cookieParser from "cookie-parser";
 import { fp } from "./fingerprint";
 import { router } from "./router";
 import grabConf from "../config/config";
-import { grabModels } from "./database";
+import { grabModels, connection } from "./database";
+import { Op } from "sequelize";
+
+const SessionStore = require("./modules/sessionStore/express-session-sequelize.js")(
+  session.Store
+);
+const db = connection();
+
+const sequelizeSessionStore = new SessionStore({
+  db,
+});
 
 const flash = require("req-flash");
 const { cookieName } = grabConf();
@@ -22,6 +32,31 @@ let firstRun = true;
 
 export const appGrab = () => app;
 
+// sequelizeSessionStore.options.db.models.Session.belongsTo(
+//   sequelizeSessionStore.options.db.models.User
+// );
+// sequelizeSessionStore.options.db.models.User.hasMany(
+//   sequelizeSessionStore.options.db.models.Session
+// );
+
+// {"cookie":{"originalMaxAge":315359996610,"expires":"2030-12-27T03:03:02.591Z","httpOnly":true,"path":"/"},"_flash":{},"expires":"2030-12-27T03:03:02.591Z","passport":{"user":"chadkoslovsky@gmail.com"}}
+
+// const where = {
+//   data: {
+//     [Op.contains]: {
+//       passport: {
+//         user: "chadkoslovsky@gmail.com",
+//       },
+//     },
+//   },
+// };
+
+// db.models.Session.findAll({ where: where })
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((e) => console.log(e));
+
 async function startExpress() {
   if (!firstRun) {
     return app;
@@ -32,9 +67,12 @@ async function startExpress() {
   const expressSession = session({
     name: cookieName,
     secret: cookieName,
+    store: sequelizeSessionStore,
     cookie: { expires: new Date(Date.now() + 3600 * 1000 * 24 * 365 * 10) },
-    //saveUninitialized: false,
+    saveUninitialized: false,
+    resave: true,
   });
+
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cookieParser());
@@ -64,6 +102,9 @@ async function startExpress() {
   };
 
   passport.use(strategy);
+
+  console.log(User.serializeUser.toString());
+
   passport.serializeUser(User.serializeUser());
 
   //TODO: fix this so it doees not do lookup a bunch hrrm

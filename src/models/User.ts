@@ -25,6 +25,11 @@ module.exports = (sequelize: any) => {
         allowNull: false,
         defaultValue: 0,
       },
+      type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "multi",
+      },
       api: {
         type: DataTypes.INTEGER,
         allowNull: false,

@@ -18,11 +18,13 @@ const LocalStrategy = pls.Strategy;
 
 let User: any;
 let Payment: any;
+let Device: any;
 
 (async () => {
   const models = await grabModels();
   User = models.User;
   Payment = models.Payment;
+  Device = models.Device;
 })();
 
 function flashMsg(msg: string, done: any, req: any) {
@@ -43,7 +45,7 @@ passport.use(
       // find a user whose email is the same as the forms email
       // we are checking to see if the user trying to login already exists
 
-      const { name, trial } = req.body;
+      let { name, trial } = req.body;
 
       if (!name) return flashMsg("Need full name.", done, req);
 
@@ -68,18 +70,7 @@ passport.use(
         newUser.password = password;
         newUser.fullName = { first: firstName, last: lastName };
 
-        if (trial) {
-          newUser.expirationDate = dayjs().add(2, "week");
-
-          Payment.create({
-            type: "trial",
-            plan: 1,
-            userId: newUser.id,
-            price: 0,
-            fee: 0,
-            paymentDate: dayjs(),
-          }).catch((e: any) => console.log(e));
-        }
+        if (trial) newUser.expirationDate = dayjs().add(2, "week");
 
         if (req.body.key) {
           const gumroad: any = await needle(
@@ -109,6 +100,33 @@ passport.use(
         // save the user
         const saved = await newUser.save().catch((e: any) => e);
 
+        if (req.body.device) {
+          req.body.device.userId = saved.dataValues.id;
+
+          const device = await Device.create(req.body.device).catch(
+            (e: any) => false
+          );
+
+          if (!device) {
+            newUser.expirationDate = dayjs();
+            newUser.save();
+            trial = false;
+          }
+        }
+
+        if (trial) {
+          const data = {
+            type: "trial",
+            plan: 1,
+            userId: saved.dataValues.id,
+            price: 0,
+            fee: 0,
+            paymentDate: dayjs().toISOString(),
+          };
+
+          Payment.create(data).catch((e: any) => console.log(e));
+        }
+
         if (!saved.dataValues)
           return flashMsg("Issue creating user.", done, req);
         newUser.dataValues.subscription = trial ? true : false;
@@ -129,8 +147,6 @@ function route(router: Router) {
       res.setHeader("Content-Type", "application/json");
 
       let sub = await subscriptionCheck(req, res, true);
-
-      console.log("SUB", sub);
 
       res.end(JSON.stringify({ ...req.user.dataValues, ...sub }));
     }
