@@ -1,6 +1,5 @@
 import dayjs from "dayjs";
 import { Router } from "express";
-import needle from "needle";
 import { subscriptionCheck } from "../../modules/checkGumroadSub";
 
 export function isSubscribed(router: Router, path: string) {

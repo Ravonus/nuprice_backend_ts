@@ -1,0 +1,760 @@
+﻿2020-05-09 08:16:27> Program: Starting Squirrel Updater: --install .
+2020-05-09 08:16:27> Program: Starting install, writing to C:\Users\ruizs\AppData\Local\SquirrelTemp
+2020-05-09 08:16:27> Program: About to install to: C:\Users\ruizs\AppData\Local\NuPrice
+2020-05-09 08:16:27> CheckForUpdateImpl: Couldn't write out staging user ID, this user probably shouldn't get beta anything: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\ruizs\AppData\Local\NuPrice\packages\.betaId'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamWriter.CreateFile(String path, Boolean append, Boolean checkHost)
+   at System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalWriteAllText(String path, String contents, Encoding encoding, Boolean checkHost)
+   at System.IO.File.WriteAllText(String path, String contents, Encoding encoding)
+   at Squirrel.UpdateManager.CheckForUpdateImpl.getOrCreateStagedUserId()
+2020-05-09 08:16:27> CheckForUpdateImpl: Failed to load local releases, starting from scratch: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\ruizs\AppData\Local\NuPrice\packages\RELEASES'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at Squirrel.Utility.LoadLocalReleases(String localReleaseFile)
+   at Squirrel.UpdateManager.CheckForUpdateImpl.<CheckForUpdate>d__2.MoveNext()
+2020-05-09 08:16:27> CheckForUpdateImpl: Reading RELEASES file from C:\Users\ruizs\AppData\Local\SquirrelTemp
+2020-05-09 08:16:27> CheckForUpdateImpl: First run or local directory is corrupt, starting from scratch
+2020-05-09 08:16:27> ApplyReleasesImpl: Writing files to app directory: C:\Users\ruizs\AppData\Local\NuPrice\app-3.1.8-beta
+2020-05-09 08:16:29> LogHost: Rigging execution stub for NuPrice_ExecutionStub.exe to C:\Users\ruizs\AppData\Local\NuPrice\NuPrice.exe
+2020-05-09 08:16:32> ApplyReleasesImpl: Squirrel Enabled Apps: [C:\Users\ruizs\AppData\Local\NuPrice\app-3.1.8-beta\NuPrice.exe]
+2020-05-09 08:16:48> ApplyReleasesImpl: Couldn't run Squirrel hook, continuing: C:\Users\ruizs\AppData\Local\NuPrice\app-3.1.8-beta\NuPrice.exe: System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at Squirrel.Utility.<>c__DisplayClass11_0.<InvokeProcessAsync>b__0()
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<InvokeProcessAsync>d__11.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.UpdateManager.ApplyReleasesImpl.<>c__DisplayClass10_0.<<invokePostInstall>b__0>d.MoveNext()
+2020-05-09 08:16:48> ApplyReleasesImpl: Starting fixPinnedExecutables
+2020-05-09 08:16:48> ApplyReleasesImpl: Examining Pin: Android Studio.lnk
+2020-05-09 08:16:48> ApplyReleasesImpl: Examining Pin: File Explorer.lnk
+2020-05-09 08:16:48> ApplyReleasesImpl: Examining Pin: Google Chrome.lnk
+2020-05-09 08:16:48> ApplyReleasesImpl: Fixing up tray icons
+2020-05-09 08:16:48> ApplyReleasesImpl: cleanDeadVersions: for version 3.1.8-beta
+2020-05-09 08:16:48> ApplyReleasesImpl: cleanDeadVersions: exclude folder app-3.1.8-beta
+2020-05-09 08:16:49> InstallHelperImpl: Couldn't write uninstall icon, don't care: System.Net.WebException: The remote server returned an error: (404) Not Found.
+   at System.Net.HttpWebRequest.EndGetResponse(IAsyncResult asyncResult)
+   at System.Net.WebClient.GetWebResponse(WebRequest request, IAsyncResult result)
+   at System.Net.WebClient.DownloadBitsResponseCallback(IAsyncResult result)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.ValidateEnd(Task task)
+   at Squirrel.UpdateManager.InstallHelperImpl.<CreateUninstallerRegistryEntry>d__5.MoveNext()
+2020-05-20 14:53:47> Program: Starting Squirrel Updater: --install .
+2020-05-20 14:53:47> Program: Starting install, writing to C:\Users\ruizs\AppData\Local\SquirrelTemp
+2020-05-20 14:53:47> Program: About to install to: C:\Users\ruizs\AppData\Local\WhatsApp
+2020-05-20 14:53:47> CheckForUpdateImpl: Couldn't write out staging user ID, this user probably shouldn't get beta anything: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\ruizs\AppData\Local\WhatsApp\packages\.betaId'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamWriter.CreateFile(String path, Boolean append, Boolean checkHost)
+   at System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalWriteAllText(String path, String contents, Encoding encoding, Boolean checkHost)
+   at System.IO.File.WriteAllText(String path, String contents, Encoding encoding)
+   at Squirrel.UpdateManager.CheckForUpdateImpl.getOrCreateStagedUserId()
+2020-05-20 14:53:47> CheckForUpdateImpl: Failed to load local releases, starting from scratch: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\ruizs\AppData\Local\WhatsApp\packages\RELEASES'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at Squirrel.Utility.LoadLocalReleases(String localReleaseFile)
+   at Squirrel.UpdateManager.CheckForUpdateImpl.<CheckForUpdate>d__2.MoveNext()
+2020-05-20 14:53:47> CheckForUpdateImpl: Reading RELEASES file from C:\Users\ruizs\AppData\Local\SquirrelTemp
+2020-05-20 14:53:47> CheckForUpdateImpl: First run or local directory is corrupt, starting from scratch
+2020-05-20 14:53:48> ApplyReleasesImpl: Writing files to app directory: C:\Users\ruizs\AppData\Local\WhatsApp\app-2.2019.8
+2020-05-20 14:53:54> LogHost: Rigging execution stub for WhatsApp_ExecutionStub.exe to C:\Users\ruizs\AppData\Local\WhatsApp\WhatsApp.exe
+2020-05-20 14:53:56> ApplyReleasesImpl: Squirrel Enabled Apps: [C:\Users\ruizs\AppData\Local\WhatsApp\app-2.2019.8\WhatsApp.exe]
+2020-05-20 14:53:59> ApplyReleasesImpl: Starting fixPinnedExecutables
+2020-05-20 14:53:59> ApplyReleasesImpl: Examining Pin: Android Studio.lnk
+2020-05-20 14:53:59> ApplyReleasesImpl: Examining Pin: Avira Security.lnk
+2020-05-20 14:53:59> ApplyReleasesImpl: Examining Pin: Excel.lnk
+2020-05-20 14:53:59> ApplyReleasesImpl: Examining Pin: File Explorer.lnk
+2020-05-20 14:53:59> ApplyReleasesImpl: Examining Pin: Google Chrome.lnk
+2020-05-20 14:53:59> ApplyReleasesImpl: Examining Pin: NuPrice.lnk
+2020-05-20 14:54:00> ApplyReleasesImpl: Examining Pin: Sublime Text 3.lnk
+2020-05-20 14:54:00> ApplyReleasesImpl: Fixing up tray icons
+2020-05-20 14:54:00> ApplyReleasesImpl: cleanDeadVersions: for version 2.2019.8
+2020-05-20 14:54:00> ApplyReleasesImpl: cleanDeadVersions: exclude folder app-2.2019.8
+2020-06-14 09:55:33> Program: Starting Squirrel Updater: --install .
+2020-06-14 09:55:33> Program: Starting install, writing to C:\Users\ruizs\AppData\Local\SquirrelTemp
+2020-06-14 09:55:33> Program: About to install to: C:\Users\ruizs\AppData\Local\sodaplayer
+2020-06-14 09:55:33> CheckForUpdateImpl: Couldn't write out staging user ID, this user probably shouldn't get beta anything: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\ruizs\AppData\Local\sodaplayer\packages\.betaId'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamWriter.CreateFile(String path, Boolean append, Boolean checkHost)
+   at System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalWriteAllText(String path, String contents, Encoding encoding, Boolean checkHost)
+   at System.IO.File.WriteAllText(String path, String contents, Encoding encoding)
+   at Squirrel.UpdateManager.CheckForUpdateImpl.getOrCreateStagedUserId()
+2020-06-14 09:55:33> CheckForUpdateImpl: Failed to load local releases, starting from scratch: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\ruizs\AppData\Local\sodaplayer\packages\RELEASES'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at Squirrel.Utility.LoadLocalReleases(String localReleaseFile)
+   at Squirrel.UpdateManager.CheckForUpdateImpl.<CheckForUpdate>d__2.MoveNext()
+2020-06-14 09:55:33> CheckForUpdateImpl: Reading RELEASES file from C:\Users\ruizs\AppData\Local\SquirrelTemp
+2020-06-14 09:55:33> CheckForUpdateImpl: First run or local directory is corrupt, starting from scratch
+2020-06-14 09:55:33> ApplyReleasesImpl: Writing files to app directory: C:\Users\ruizs\AppData\Local\sodaplayer\app-1.4.2
+2020-06-14 09:55:37> LogHost: Rigging execution stub for Soda Player_ExecutionStub.exe to C:\Users\ruizs\AppData\Local\sodaplayer\Soda Player.exe
+2020-06-14 09:55:39> ApplyReleasesImpl: Squirrel Enabled Apps: [C:\Users\ruizs\AppData\Local\sodaplayer\app-1.4.2\Soda Player.exe]
+2020-06-14 09:55:43> ApplyReleasesImpl: Starting fixPinnedExecutables
+2020-06-14 09:55:43> ApplyReleasesImpl: Examining Pin: Android Studio.lnk
+2020-06-14 09:55:43> ApplyReleasesImpl: Examining Pin: Avira Security.lnk
+2020-06-14 09:55:43> ApplyReleasesImpl: Examining Pin: DYMO Connect Web Service.lnk
+2020-06-14 09:55:43> ApplyReleasesImpl: Examining Pin: Excel.lnk
+2020-06-14 09:55:43> ApplyReleasesImpl: Examining Pin: File Explorer.lnk
+2020-06-14 09:55:43> ApplyReleasesImpl: Examining Pin: Google Chrome.lnk
+2020-06-14 09:55:43> ApplyReleasesImpl: Examining Pin: NuPrice.lnk
+2020-06-14 09:55:43> ApplyReleasesImpl: Examining Pin: Sublime Text 3.lnk
+2020-06-14 09:55:43> ApplyReleasesImpl: Fixing up tray icons
+2020-06-14 09:55:43> ApplyReleasesImpl: cleanDeadVersions: for version 1.4.2
+2020-06-14 09:55:43> ApplyReleasesImpl: cleanDeadVersions: exclude folder app-1.4.2
+19248> 2020-07-12 07:53:02> Program: Starting Squirrel Updater: --install .
+19248> 2020-07-12 07:53:02> Program: Starting install, writing to C:\Users\ruizs\AppData\Local\SquirrelTemp
+19248> 2020-07-12 07:53:02> Program: About to install to: C:\Users\ruizs\AppData\Local\Discord
+19248> 2020-07-12 07:53:02> SingleGlobalInstance: Grabbing lockfile with timeout of 00:00:10
+19248> 2020-07-12 07:53:02> CheckForUpdateImpl: Reading RELEASES file from C:\Users\ruizs\AppData\Local\SquirrelTemp
+19248> 2020-07-12 07:53:02> CheckForUpdateImpl: Remote version 0.0.306 differs from local 
+19248> 2020-07-12 07:53:02> CheckForUpdateImpl: First run or local directory is corrupt, starting from scratch
+19248> 2020-07-12 07:53:03> ApplyReleasesImpl: Writing files to app directory: C:\Users\ruizs\AppData\Local\Discord\app-0.0.306
+19248> 2020-07-12 07:53:09> ApplyReleasesImpl: Moving file C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\lib\net45\chrome_100_percent.pak to C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\chrome_100_percent.pak
+19248> 2020-07-12 07:53:09> ApplyReleasesImpl: Moving file C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\lib\net45\d3dcompiler_47.dll to C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\d3dcompiler_47.dll
+19248> 2020-07-12 07:53:09> ApplyReleasesImpl: Moving file C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\lib\net45\chrome_200_percent.pak to C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\chrome_200_percent.pak
+19248> 2020-07-12 07:53:09> ApplyReleasesImpl: Moving file C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\lib\net45\app.ico to C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\app.ico
+19248> 2020-07-12 07:53:09> ApplyReleasesImpl: Moving file C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\lib\net45\Discord.exe to C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\Discord.exe
+19248> 2020-07-12 07:53:09> ApplyReleasesImpl: Moving file C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\lib\net45\ffmpeg.dll to C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\ffmpeg.dll
+19248> 2020-07-12 07:53:09> ApplyReleasesImpl: Moving file C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\lib\net45\icudtl.dat to C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\icudtl.dat
+19248> 2020-07-12 07:53:09> ApplyReleasesImpl: Moving file C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\lib\net45\libEGL.dll to C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\libEGL.dll
+19248> 2020-07-12 07:53:09> ApplyReleasesImpl: Moving file C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\lib\net45\libGLESv2.dll to C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\libGLESv2.dll
+19248> 2020-07-12 07:53:09> ApplyReleasesImpl: Moving file C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\lib\net45\natives_blob.bin to C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\natives_blob.bin
+19248> 2020-07-12 07:53:09> ApplyReleasesImpl: Moving file C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\lib\net45\resources.pak to C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\resources.pak
+19248> 2020-07-12 07:53:09> ApplyReleasesImpl: Moving file C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\lib\net45\snapshot_blob.bin to C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\snapshot_blob.bin
+19248> 2020-07-12 07:53:09> ApplyReleasesImpl: Moving file C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\lib\net45\Squirrel.exe to C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\Squirrel.exe
+19248> 2020-07-12 07:53:09> ApplyReleasesImpl: Moving file C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\lib\net45\v8_context_snapshot.bin to C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\v8_context_snapshot.bin
+19248> 2020-07-12 07:53:10> ApplyReleasesImpl: Started updateSelf pid 17704
+19248> 2020-07-12 07:53:10> ApplyReleasesImpl: Squirrel Enabled Apps: [C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\Discord.exe]
+19248> 2020-07-12 07:53:10> Utility: Process Started: C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\Discord.exe --squirrel-install 0.0.306, pid 9620
+19248> 2020-07-12 07:53:15> Utility: Received exitcode 0 from process C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\Discord.exe
+19248> 2020-07-12 07:53:15> ApplyReleasesImpl: ran C:\Users\ruizs\AppData\Local\Discord\app-0.0.306\Discord.exe, pid 12044
+19248> 2020-07-12 07:53:15> ApplyReleasesImpl: Starting fixPinnedExecutables
+19248> 2020-07-12 07:53:15> ApplyReleasesImpl: fixPinnedExecutables: newCurrentFolder: app-0.0.306
+19248> 2020-07-12 07:53:15> ApplyReleasesImpl: File 'C:\Users\ruizs\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessibility\Narrator.lnk' could not be converted into a valid ShellLink: System.IO.FileNotFoundException: The system cannot find the file specified. (Exception from HRESULT: 0x80070002)
+   at Squirrel.Shell.ShellLink.IShellLinkW.Resolve(IntPtr hWnd, UInt32 fFlags)
+   at Squirrel.Shell.ShellLink.Open(String linkFile, IntPtr hWnd, EShellLinkResolveFlags resolveFlags, UInt16 timeOut)
+   at Squirrel.UpdateManager.ApplyReleasesImpl.<fixPinnedExecutables>b__11_0(FileInfo file)
+19248> 2020-07-12 07:53:15> ApplyReleasesImpl: File 'C:\Users\ruizs\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessibility\On-Screen Keyboard.lnk' could not be converted into a valid ShellLink: System.IO.FileNotFoundException: The system cannot find the file specified. (Exception from HRESULT: 0x80070002)
+   at Squirrel.Shell.ShellLink.IShellLinkW.Resolve(IntPtr hWnd, UInt32 fFlags)
+   at Squirrel.Shell.ShellLink.Open(String linkFile, IntPtr hWnd, EShellLinkResolveFlags resolveFlags, UInt16 timeOut)
+   at Squirrel.UpdateManager.ApplyReleasesImpl.<fixPinnedExecutables>b__11_0(FileInfo file)
+19248> 2020-07-12 07:53:15> ApplyReleasesImpl: Updating shortcut C:\Users\ruizs\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Discord Inc\Discord.lnk
+19248> 2020-07-12 07:53:15> ApplyReleasesImpl: Updating shortcut C:\Users\ruizs\OneDrive\Desktop\Discord.lnk
+19248> 2020-07-12 07:53:15> ApplyReleasesImpl: Fixing up tray icons
+19248> 2020-07-12 07:53:16> ApplyReleasesImpl: cleanDeadVersions: for version 0.0.306
+19248> 2020-07-12 07:53:16> ApplyReleasesImpl: cleanDeadVersions: exclude current version folder app-0.0.306
+2020-07-14 15:59:11> Program: Starting Squirrel Updater: --install .
+2020-07-14 15:59:11> Program: Starting install, writing to C:\Users\ruizs\AppData\Local\SquirrelTemp
+2020-07-14 15:59:11> Program: About to install to: C:\Users\ruizs\AppData\Local\NuPrice
+2020-07-14 15:59:11> Program: Install path C:\Users\ruizs\AppData\Local\NuPrice already exists, burning it to the ground
+2020-07-14 15:59:11> CheckForUpdateImpl: Couldn't write out staging user ID, this user probably shouldn't get beta anything: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\ruizs\AppData\Local\NuPrice\packages\.betaId'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamWriter.CreateFile(String path, Boolean append, Boolean checkHost)
+   at System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalWriteAllText(String path, String contents, Encoding encoding, Boolean checkHost)
+   at System.IO.File.WriteAllText(String path, String contents, Encoding encoding)
+   at Squirrel.UpdateManager.CheckForUpdateImpl.getOrCreateStagedUserId()
+2020-07-14 15:59:11> CheckForUpdateImpl: Failed to load local releases, starting from scratch: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\ruizs\AppData\Local\NuPrice\packages\RELEASES'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at Squirrel.Utility.LoadLocalReleases(String localReleaseFile)
+   at Squirrel.UpdateManager.CheckForUpdateImpl.<CheckForUpdate>d__2.MoveNext()
+2020-07-14 15:59:11> CheckForUpdateImpl: Reading RELEASES file from C:\Users\ruizs\AppData\Local\SquirrelTemp
+2020-07-14 15:59:11> CheckForUpdateImpl: First run or local directory is corrupt, starting from scratch
+2020-07-14 15:59:12> ApplyReleasesImpl: Writing files to app directory: C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta
+2020-07-14 15:59:16> LogHost: Rigging execution stub for NuPrice_ExecutionStub.exe to C:\Users\ruizs\AppData\Local\NuPrice\NuPrice.exe
+2020-07-14 15:59:23> ApplyReleasesImpl: Squirrel Enabled Apps: [C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta\NuPrice.exe]
+2020-07-14 15:59:27> ApplyReleasesImpl: Starting fixPinnedExecutables
+2020-07-14 15:59:27> ApplyReleasesImpl: Examining Pin: Android Studio.lnk
+2020-07-14 15:59:27> ApplyReleasesImpl: Examining Pin: Avira Security.lnk
+2020-07-14 15:59:27> ApplyReleasesImpl: Examining Pin: DYMO Connect Web Service.lnk
+2020-07-14 15:59:27> ApplyReleasesImpl: Examining Pin: Excel.lnk
+2020-07-14 15:59:27> ApplyReleasesImpl: Examining Pin: File Explorer.lnk
+2020-07-14 15:59:27> ApplyReleasesImpl: Examining Pin: Google Chrome.lnk
+2020-07-14 15:59:27> ApplyReleasesImpl: Examining Pin: Microsoft Edge.lnk
+2020-07-14 15:59:27> ApplyReleasesImpl: Examining Pin: Sublime Text 3.lnk
+2020-07-14 15:59:27> ApplyReleasesImpl: Fixing up tray icons
+2020-07-14 15:59:27> ApplyReleasesImpl: cleanDeadVersions: for version 3.2.0-beta
+2020-07-14 15:59:27> ApplyReleasesImpl: cleanDeadVersions: exclude folder app-3.2.0-beta
+2020-07-14 15:59:29> InstallHelperImpl: Couldn't write uninstall icon, don't care: System.Net.WebException: The remote server returned an error: (404) Not Found.
+   at System.Net.HttpWebRequest.EndGetResponse(IAsyncResult asyncResult)
+   at System.Net.WebClient.GetWebResponse(WebRequest request, IAsyncResult result)
+   at System.Net.WebClient.DownloadBitsResponseCallback(IAsyncResult result)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.ValidateEnd(Task task)
+   at Squirrel.UpdateManager.InstallHelperImpl.<CreateUninstallerRegistryEntry>d__5.MoveNext()
+task)
+   at Squirrel.Utility.<>c.<<DeleteDirectory>b__19_1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c__DisplayClass13_1`1.<<ForEachAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<DeleteDirectory>d__19.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<LogIfThrows>d__42.MoveNext()
+2020-07-14 15:59:15> Unhandled exception: System.AggregateException: One or more errors occurred. ---> System.IO.IOException: The process cannot access the file 'C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta\NuPrice.exe' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.InternalDelete(String path, Boolean checkHost)
+   at System.IO.File.Delete(String path)
+   at Squirrel.Utility.<>c.<DeleteDirectory>b__19_0(String file)
+   at Squirrel.Utility.<>c__DisplayClass12_1`1.<ForEachAsync>b__1()
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c__DisplayClass13_1`1.<<ForEachAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<DeleteDirectory>d__19.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c.<<DeleteDirectory>b__19_1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c__DisplayClass13_1`1.<<ForEachAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<DeleteDirectory>d__19.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<LogIfThrows>d__42.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.ValidateEnd(Task task)
+   at Squirrel.Update.Program.<Install>d__4.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Squirrel.Update.Program.executeCommandLine(String[] args)
+   at Squirrel.Update.Program.main(String[] args)
+---> (Inner Exception #0) System.IO.IOException: The process cannot access the file 'C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta\NuPrice.exe' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.InternalDelete(String path, Boolean checkHost)
+   at System.IO.File.Delete(String path)
+   at Squirrel.Utility.<>c.<DeleteDirectory>b__19_0(String file)
+   at Squirrel.Utility.<>c__DisplayClass12_1`1.<ForEachAsync>b__1()
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c__DisplayClass13_1`1.<<ForEachAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<DeleteDirectory>d__19.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c.<<DeleteDirectory>b__19_1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c__DisplayClass13_1`1.<<ForEachAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<DeleteDirectory>d__19.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<LogIfThrows>d__42.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.ValidateEnd(Task task)
+   at Squirrel.Update.Program.<Install>d__4.MoveNext()<---
+
+2020-07-14 15:59:34> Program: Starting Squirrel Updater: --install .
+2020-07-14 15:59:34> Program: Starting install, writing to C:\Users\ruizs\AppData\Local\SquirrelTemp
+2020-07-14 15:59:34> Program: About to install to: C:\Users\ruizs\AppData\Local\NuPrice
+2020-07-14 15:59:34> Program: Install path C:\Users\ruizs\AppData\Local\NuPrice already exists, burning it to the ground
+2020-07-14 15:59:35> CheckForUpdateImpl: Couldn't write out staging user ID, this user probably shouldn't get beta anything: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\ruizs\AppData\Local\NuPrice\packages\.betaId'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamWriter.CreateFile(String path, Boolean append, Boolean checkHost)
+   at System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalWriteAllText(String path, String contents, Encoding encoding, Boolean checkHost)
+   at System.IO.File.WriteAllText(String path, String contents, Encoding encoding)
+   at Squirrel.UpdateManager.CheckForUpdateImpl.getOrCreateStagedUserId()
+2020-07-14 15:59:35> CheckForUpdateImpl: Failed to load local releases, starting from scratch: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\ruizs\AppData\Local\NuPrice\packages\RELEASES'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at Squirrel.Utility.LoadLocalReleases(String localReleaseFile)
+   at Squirrel.UpdateManager.CheckForUpdateImpl.<CheckForUpdate>d__2.MoveNext()
+2020-07-14 15:59:35> CheckForUpdateImpl: Reading RELEASES file from C:\Users\ruizs\AppData\Local\SquirrelTemp
+2020-07-14 15:59:35> CheckForUpdateImpl: First run or local directory is corrupt, starting from scratch
+2020-07-14 15:59:36> ApplyReleasesImpl: Writing files to app directory: C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta
+2020-07-14 15:59:42> LogHost: Rigging execution stub for NuPrice_ExecutionStub.exe to C:\Users\ruizs\AppData\Local\NuPrice\NuPrice.exe
+2020-07-14 15:59:50> ApplyReleasesImpl: Squirrel Enabled Apps: [C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta\NuPrice.exe]
+2020-07-14 16:00:06> ApplyReleasesImpl: Couldn't run Squirrel hook, continuing: C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta\NuPrice.exe: System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at Squirrel.Utility.<>c__DisplayClass11_0.<InvokeProcessAsync>b__0()
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<InvokeProcessAsync>d__11.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.UpdateManager.ApplyReleasesImpl.<>c__DisplayClass10_0.<<invokePostInstall>b__0>d.MoveNext()
+2020-07-14 16:00:06> ApplyReleasesImpl: Starting fixPinnedExecutables
+2020-07-14 16:00:06> ApplyReleasesImpl: Examining Pin: Android Studio.lnk
+2020-07-14 16:00:06> ApplyReleasesImpl: Examining Pin: Avira Security.lnk
+2020-07-14 16:00:06> ApplyReleasesImpl: Examining Pin: DYMO Connect Web Service.lnk
+2020-07-14 16:00:06> ApplyReleasesImpl: Examining Pin: Excel.lnk
+2020-07-14 16:00:06> ApplyReleasesImpl: Examining Pin: File Explorer.lnk
+2020-07-14 16:00:06> ApplyReleasesImpl: Examining Pin: Google Chrome.lnk
+2020-07-14 16:00:06> ApplyReleasesImpl: Examining Pin: Microsoft Edge.lnk
+2020-07-14 16:00:06> ApplyReleasesImpl: Examining Pin: Sublime Text 3.lnk
+2020-07-14 16:00:06> ApplyReleasesImpl: Fixing up tray icons
+2020-07-14 16:00:06> ApplyReleasesImpl: cleanDeadVersions: for version 3.2.0-beta
+2020-07-14 16:00:06> ApplyReleasesImpl: cleanDeadVersions: exclude folder app-3.2.0-beta
+2020-07-14 16:00:09> InstallHelperImpl: Couldn't write uninstall icon, don't care: System.Net.WebException: The remote server returned an error: (404) Not Found.
+   at System.Net.HttpWebRequest.EndGetResponse(IAsyncResult asyncResult)
+   at System.Net.WebClient.GetWebResponse(WebRequest request, IAsyncResult result)
+   at System.Net.WebClient.DownloadBitsResponseCallback(IAsyncResult result)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.ValidateEnd(Task task)
+   at Squirrel.UpdateManager.InstallHelperImpl.<CreateUninstallerRegistryEntry>d__5.MoveNext()
+2020-07-14 16:00:18> Program: Starting Squirrel Updater: --install .
+2020-07-14 16:00:18> Program: Starting install, writing to C:\Users\ruizs\AppData\Local\SquirrelTemp
+2020-07-14 16:00:18> Program: About to install to: C:\Users\ruizs\AppData\Local\NuPrice
+2020-07-14 16:00:18> Program: Install path C:\Users\ruizs\AppData\Local\NuPrice already exists, burning it to the ground
+2020-07-14 16:00:18> IEnableLogger: : System.ComponentModel.Win32Exception (0x80004005): Access is denied
+   at System.Diagnostics.Process.Kill()
+   at Squirrel.UpdateManager.InstallHelperImpl.<>c__DisplayClass6_1.<KillAllProcessesBelongingToPackage>b__2()
+   at Squirrel.Utility.LogIfThrows(IFullLogger This, LogLevel level, String message, Action block)
+2020-07-14 16:00:19> CheckForUpdateImpl: Couldn't write out staging user ID, this user probably shouldn't get beta anything: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\ruizs\AppData\Local\NuPrice\packages\.betaId'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamWriter.CreateFile(String path, Boolean append, Boolean checkHost)
+   at System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalWriteAllText(String path, String contents, Encoding encoding, Boolean checkHost)
+   at System.IO.File.WriteAllText(String path, String contents, Encoding encoding)
+   at Squirrel.UpdateManager.CheckForUpdateImpl.getOrCreateStagedUserId()
+2020-07-14 16:00:19> CheckForUpdateImpl: Failed to load local releases, starting from scratch: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\ruizs\AppData\Local\NuPrice\packages\RELEASES'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at Squirrel.Utility.LoadLocalReleases(String localReleaseFile)
+   at Squirrel.UpdateManager.CheckForUpdateImpl.<CheckForUpdate>d__2.MoveNext()
+2020-07-14 16:00:19> CheckForUpdateImpl: Reading RELEASES file from C:\Users\ruizs\AppData\Local\SquirrelTemp
+2020-07-14 16:00:19> CheckForUpdateImpl: First run or local directory is corrupt, starting from scratch
+2020-07-14 16:00:21> ApplyReleasesImpl: Writing files to app directory: C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta
+2020-07-14 16:00:25> LogHost: Rigging execution stub for NuPrice_ExecutionStub.exe to C:\Users\ruizs\AppData\Local\NuPrice\NuPrice.exe
+2020-07-14 16:00:33> ApplyReleasesImpl: Squirrel Enabled Apps: [C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta\NuPrice.exe]
+2020-07-14 16:00:48> ApplyReleasesImpl: Couldn't run Squirrel hook, continuing: C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta\NuPrice.exe: System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at Squirrel.Utility.<>c__DisplayClass11_0.<InvokeProcessAsync>b__0()
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<InvokeProcessAsync>d__11.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.UpdateManager.ApplyReleasesImpl.<>c__DisplayClass10_0.<<invokePostInstall>b__0>d.MoveNext()
+2020-07-14 16:00:49> ApplyReleasesImpl: Starting fixPinnedExecutables
+2020-07-14 16:00:49> ApplyReleasesImpl: Examining Pin: Android Studio.lnk
+2020-07-14 16:00:49> ApplyReleasesImpl: Examining Pin: Avira Security.lnk
+2020-07-14 16:00:49> ApplyReleasesImpl: Examining Pin: DYMO Connect Web Service.lnk
+2020-07-14 16:00:49> ApplyReleasesImpl: Examining Pin: Excel.lnk
+2020-07-14 16:00:49> ApplyReleasesImpl: Examining Pin: File Explorer.lnk
+2020-07-14 16:00:49> ApplyReleasesImpl: Examining Pin: Google Chrome.lnk
+2020-07-14 16:00:49> ApplyReleasesImpl: Examining Pin: Microsoft Edge.lnk
+2020-07-14 16:00:49> ApplyReleasesImpl: Examining Pin: Sublime Text 3.lnk
+2020-07-14 16:00:49> ApplyReleasesImpl: Fixing up tray icons
+2020-07-14 16:00:49> ApplyReleasesImpl: cleanDeadVersions: for version 3.2.0-beta
+2020-07-14 16:00:49> ApplyReleasesImpl: cleanDeadVersions: exclude folder app-3.2.0-beta
+2020-07-14 16:00:51> InstallHelperImpl: Couldn't write uninstall icon, don't care: System.Net.WebException: The remote server returned an error: (404) Not Found.
+   at System.Net.HttpWebRequest.EndGetResponse(IAsyncResult asyncResult)
+   at System.Net.WebClient.GetWebResponse(WebRequest request, IAsyncResult result)
+   at System.Net.WebClient.DownloadBitsResponseCallback(IAsyncResult result)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.ValidateEnd(Task task)
+   at Squirrel.UpdateManager.InstallHelperImpl.<CreateUninstallerRegistryEntry>d__5.MoveNext()
+2020-07-14 16:01:08> Program: Starting Squirrel Updater: --install . --rerunningWithoutUAC
+2020-07-14 16:01:08> Program: Starting install, writing to C:\Users\ruizs\AppData\Local\SquirrelTemp
+2020-07-14 16:01:08> Program: About to install to: C:\Users\ruizs\AppData\Local\NuPrice
+2020-07-14 16:01:08> Program: Install path C:\Users\ruizs\AppData\Local\NuPrice already exists, burning it to the ground
+2020-07-14 16:01:09> CheckForUpdateImpl: Couldn't write out staging user ID, this user probably shouldn't get beta anything: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\ruizs\AppData\Local\NuPrice\packages\.betaId'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamWriter.CreateFile(String path, Boolean append, Boolean checkHost)
+   at System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalWriteAllText(String path, String contents, Encoding encoding, Boolean checkHost)
+   at System.IO.File.WriteAllText(String path, String contents, Encoding encoding)
+   at Squirrel.UpdateManager.CheckForUpdateImpl.getOrCreateStagedUserId()
+2020-07-14 16:01:09> CheckForUpdateImpl: Failed to load local releases, starting from scratch: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\ruizs\AppData\Local\NuPrice\packages\RELEASES'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at Squirrel.Utility.LoadLocalReleases(String localReleaseFile)
+   at Squirrel.UpdateManager.CheckForUpdateImpl.<CheckForUpdate>d__2.MoveNext()
+2020-07-14 16:01:09> CheckForUpdateImpl: Reading RELEASES file from C:\Users\ruizs\AppData\Local\SquirrelTemp
+2020-07-14 16:01:09> CheckForUpdateImpl: First run or local directory is corrupt, starting from scratch
+2020-07-14 16:01:11> ApplyReleasesImpl: Writing files to app directory: C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta
+2020-07-14 16:01:17> LogHost: Rigging execution stub for NuPrice_ExecutionStub.exe to C:\Users\ruizs\AppData\Local\NuPrice\NuPrice.exe
+2020-07-14 16:01:25> ApplyReleasesImpl: Squirrel Enabled Apps: [C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta\NuPrice.exe]
+2020-07-14 16:01:33> ApplyReleasesImpl: Starting fixPinnedExecutables
+2020-07-14 16:01:33> ApplyReleasesImpl: Examining Pin: Android Studio.lnk
+2020-07-14 16:01:34> ApplyReleasesImpl: Examining Pin: Avira Security.lnk
+2020-07-14 16:01:34> ApplyReleasesImpl: Examining Pin: DYMO Connect Web Service.lnk
+2020-07-14 16:01:34> ApplyReleasesImpl: Examining Pin: Excel.lnk
+2020-07-14 16:01:34> ApplyReleasesImpl: Examining Pin: File Explorer.lnk
+2020-07-14 16:01:34> ApplyReleasesImpl: Examining Pin: Google Chrome.lnk
+2020-07-14 16:01:34> ApplyReleasesImpl: Examining Pin: Microsoft Edge.lnk
+2020-07-14 16:01:34> ApplyReleasesImpl: Examining Pin: Sublime Text 3.lnk
+2020-07-14 16:01:34> ApplyReleasesImpl: Fixing up tray icons
+2020-07-14 16:01:34> ApplyReleasesImpl: cleanDeadVersions: for version 3.2.0-beta
+2020-07-14 16:01:34> ApplyReleasesImpl: cleanDeadVersions: exclude folder app-3.2.0-beta
+2020-07-14 16:01:35> InstallHelperImpl: Couldn't write uninstall icon, don't care: System.Net.WebException: The remote server returned an error: (404) Not Found.
+   at System.Net.HttpWebRequest.EndGetResponse(IAsyncResult asyncResult)
+   at System.Net.WebClient.GetWebResponse(WebRequest request, IAsyncResult result)
+   at System.Net.WebClient.DownloadBitsResponseCallback(IAsyncResult result)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.ValidateEnd(Task task)
+   at Squirrel.UpdateManager.InstallHelperImpl.<CreateUninstallerRegistryEntry>d__5.MoveNext()
+task)
+   at Squirrel.Utility.<>c.<<DeleteDirectory>b__19_1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c__DisplayClass13_1`1.<<ForEachAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<DeleteDirectory>d__19.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<LogIfThrows>d__42.MoveNext()
+2020-07-14 16:01:14> Unhandled exception: System.AggregateException: One or more errors occurred. ---> System.IO.IOException: The process cannot access the file 'C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta\NuPrice.exe' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.InternalDelete(String path, Boolean checkHost)
+   at System.IO.File.Delete(String path)
+   at Squirrel.Utility.<>c.<DeleteDirectory>b__19_0(String file)
+   at Squirrel.Utility.<>c__DisplayClass12_1`1.<ForEachAsync>b__1()
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c__DisplayClass13_1`1.<<ForEachAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<DeleteDirectory>d__19.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c.<<DeleteDirectory>b__19_1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c__DisplayClass13_1`1.<<ForEachAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<DeleteDirectory>d__19.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<LogIfThrows>d__42.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.ValidateEnd(Task task)
+   at Squirrel.Update.Program.<Install>d__4.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Squirrel.Update.Program.executeCommandLine(String[] args)
+   at Squirrel.Update.Program.main(String[] args)
+---> (Inner Exception #0) System.IO.IOException: The process cannot access the file 'C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta\NuPrice.exe' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.InternalDelete(String path, Boolean checkHost)
+   at System.IO.File.Delete(String path)
+   at Squirrel.Utility.<>c.<DeleteDirectory>b__19_0(String file)
+   at Squirrel.Utility.<>c__DisplayClass12_1`1.<ForEachAsync>b__1()
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c__DisplayClass13_1`1.<<ForEachAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<DeleteDirectory>d__19.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c.<<DeleteDirectory>b__19_1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c__DisplayClass13_1`1.<<ForEachAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<DeleteDirectory>d__19.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<LogIfThrows>d__42.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.ValidateEnd(Task task)
+   at Squirrel.Update.Program.<Install>d__4.MoveNext()<---
+
+2020-07-14 16:01:40> Program: Starting Squirrel Updater: --install .
+2020-07-14 16:01:40> Program: Starting install, writing to C:\Users\ruizs\AppData\Local\SquirrelTemp
+2020-07-14 16:01:40> Program: About to install to: C:\Users\ruizs\AppData\Local\NuPrice
+2020-07-14 16:01:40> Program: Install path C:\Users\ruizs\AppData\Local\NuPrice already exists, burning it to the ground
+2020-07-14 16:01:41> CheckForUpdateImpl: Couldn't write out staging user ID, this user probably shouldn't get beta anything: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\ruizs\AppData\Local\NuPrice\packages\.betaId'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamWriter.CreateFile(String path, Boolean append, Boolean checkHost)
+   at System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalWriteAllText(String path, String contents, Encoding encoding, Boolean checkHost)
+   at System.IO.File.WriteAllText(String path, String contents, Encoding encoding)
+   at Squirrel.UpdateManager.CheckForUpdateImpl.getOrCreateStagedUserId()
+2020-07-14 16:01:41> CheckForUpdateImpl: Failed to load local releases, starting from scratch: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\ruizs\AppData\Local\NuPrice\packages\RELEASES'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at Squirrel.Utility.LoadLocalReleases(String localReleaseFile)
+   at Squirrel.UpdateManager.CheckForUpdateImpl.<CheckForUpdate>d__2.MoveNext()
+2020-07-14 16:01:41> CheckForUpdateImpl: Reading RELEASES file from C:\Users\ruizs\AppData\Local\SquirrelTemp
+2020-07-14 16:01:41> CheckForUpdateImpl: First run or local directory is corrupt, starting from scratch
+2020-07-14 16:01:42> ApplyReleasesImpl: Writing files to app directory: C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta
+2020-07-14 16:01:46> LogHost: Rigging execution stub for NuPrice_ExecutionStub.exe to C:\Users\ruizs\AppData\Local\NuPrice\NuPrice.exe
+2020-07-14 16:01:54> ApplyReleasesImpl: Squirrel Enabled Apps: [C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta\NuPrice.exe]
+2020-07-14 16:02:10> ApplyReleasesImpl: Couldn't run Squirrel hook, continuing: C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta\NuPrice.exe: System.OperationCanceledException: The operation was canceled.
+   at System.Threading.CancellationToken.ThrowOperationCanceledException()
+   at Squirrel.Utility.<>c__DisplayClass11_0.<InvokeProcessAsync>b__0()
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<InvokeProcessAsync>d__11.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.UpdateManager.ApplyReleasesImpl.<>c__DisplayClass10_0.<<invokePostInstall>b__0>d.MoveNext()
+2020-07-14 16:02:10> ApplyReleasesImpl: Starting fixPinnedExecutables
+2020-07-14 16:02:10> ApplyReleasesImpl: Examining Pin: Android Studio.lnk
+2020-07-14 16:02:10> ApplyReleasesImpl: Examining Pin: Avira Security.lnk
+2020-07-14 16:02:10> ApplyReleasesImpl: Examining Pin: DYMO Connect Web Service.lnk
+2020-07-14 16:02:10> ApplyReleasesImpl: Examining Pin: Excel.lnk
+2020-07-14 16:02:10> ApplyReleasesImpl: Examining Pin: File Explorer.lnk
+2020-07-14 16:02:10> ApplyReleasesImpl: Examining Pin: Google Chrome.lnk
+2020-07-14 16:02:10> ApplyReleasesImpl: Examining Pin: Microsoft Edge.lnk
+2020-07-14 16:02:10> ApplyReleasesImpl: Examining Pin: Sublime Text 3.lnk
+2020-07-14 16:02:10> ApplyReleasesImpl: Fixing up tray icons
+2020-07-14 16:02:10> ApplyReleasesImpl: cleanDeadVersions: for version 3.2.0-beta
+2020-07-14 16:02:10> ApplyReleasesImpl: cleanDeadVersions: exclude folder app-3.2.0-beta
+2020-07-14 16:02:12> InstallHelperImpl: Couldn't write uninstall icon, don't care: System.Net.WebException: The remote server returned an error: (404) Not Found.
+   at System.Net.HttpWebRequest.EndGetResponse(IAsyncResult asyncResult)
+   at System.Net.WebClient.GetWebResponse(WebRequest request, IAsyncResult result)
+   at System.Net.WebClient.DownloadBitsResponseCallback(IAsyncResult result)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.ValidateEnd(Task task)
+   at Squirrel.UpdateManager.InstallHelperImpl.<CreateUninstallerRegistryEntry>d__5.MoveNext()
+2020-07-14 16:02:25> Program: Starting Squirrel Updater: --install .
+2020-07-14 16:02:25> Program: Starting install, writing to C:\Users\ruizs\AppData\Local\SquirrelTemp
+2020-07-14 16:02:25> Program: About to install to: C:\Users\ruizs\AppData\Local\NuPrice
+2020-07-14 16:02:25> Program: Install path C:\Users\ruizs\AppData\Local\NuPrice already exists, burning it to the ground
+2020-07-14 16:02:26> CheckForUpdateImpl: Couldn't write out staging user ID, this user probably shouldn't get beta anything: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\ruizs\AppData\Local\NuPrice\packages\.betaId'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.StreamWriter.CreateFile(String path, Boolean append, Boolean checkHost)
+   at System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding, Int32 bufferSize, Boolean checkHost)
+   at System.IO.File.InternalWriteAllText(String path, String contents, Encoding encoding, Boolean checkHost)
+   at System.IO.File.WriteAllText(String path, String contents, Encoding encoding)
+   at Squirrel.UpdateManager.CheckForUpdateImpl.getOrCreateStagedUserId()
+2020-07-14 16:02:26> CheckForUpdateImpl: Failed to load local releases, starting from scratch: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\ruizs\AppData\Local\NuPrice\packages\RELEASES'.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at Squirrel.Utility.LoadLocalReleases(String localReleaseFile)
+   at Squirrel.UpdateManager.CheckForUpdateImpl.<CheckForUpdate>d__2.MoveNext()
+2020-07-14 16:02:26> CheckForUpdateImpl: Reading RELEASES file from C:\Users\ruizs\AppData\Local\SquirrelTemp
+2020-07-14 16:02:26> CheckForUpdateImpl: First run or local directory is corrupt, starting from scratch
+2020-07-14 16:02:28> ApplyReleasesImpl: Writing files to app directory: C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta
+2020-07-14 16:02:33> LogHost: Rigging execution stub for NuPrice_ExecutionStub.exe to C:\Users\ruizs\AppData\Local\NuPrice\NuPrice.exe
+s\ruizs\AppData\Local\SquirrelTemp
+2020-07-14 16:02:29> Program: About to install to: C:\Users\ruizs\AppData\Local\NuPrice
+2020-07-14 16:02:29> Program: Install path C:\Users\ruizs\AppData\Local\NuPrice already exists, burning it to the ground
+2020-07-14 16:02:30> IEnableLogger: Failed to remove existing directory on full install, is the app still running???: System.IO.IOException: The process cannot access the file 'C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta\NuPrice.exe' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.InternalDelete(String path, Boolean checkHost)
+   at System.IO.File.Delete(String path)
+   at Squirrel.Utility.<>c.<DeleteDirectory>b__19_0(String file)
+   at Squirrel.Utility.<>c__DisplayClass12_1`1.<ForEachAsync>b__1()
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c__DisplayClass13_1`1.<<ForEachAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<DeleteDirectory>d__19.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c.<<DeleteDirectory>b__19_1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c__DisplayClass13_1`1.<<ForEachAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<DeleteDirectory>d__19.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<LogIfThrows>d__42.MoveNext()
+2020-07-14 16:02:30> Unhandled exception: System.AggregateException: One or more errors occurred. ---> System.IO.IOException: The process cannot access the file 'C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta\NuPrice.exe' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.InternalDelete(String path, Boolean checkHost)
+   at System.IO.File.Delete(String path)
+   at Squirrel.Utility.<>c.<DeleteDirectory>b__19_0(String file)
+   at Squirrel.Utility.<>c__DisplayClass12_1`1.<ForEachAsync>b__1()
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c__DisplayClass13_1`1.<<ForEachAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<DeleteDirectory>d__19.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c.<<DeleteDirectory>b__19_1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c__DisplayClass13_1`1.<<ForEachAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<DeleteDirectory>d__19.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<LogIfThrows>d__42.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.ValidateEnd(Task task)
+   at Squirrel.Update.Program.<Install>d__4.MoveNext()
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at System.Threading.Tasks.Task.Wait()
+   at Squirrel.Update.Program.executeCommandLine(String[] args)
+   at Squirrel.Update.Program.main(String[] args)
+---> (Inner Exception #0) System.IO.IOException: The process cannot access the file 'C:\Users\ruizs\AppData\Local\NuPrice\app-3.2.0-beta\NuPrice.exe' because it is being used by another process.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.File.InternalDelete(String path, Boolean checkHost)
+   at System.IO.File.Delete(String path)
+   at Squirrel.Utility.<>c.<DeleteDirectory>b__19_0(String file)
+   at Squirrel.Utility.<>c__DisplayClass12_1`1.<ForEachAsync>b__1()
+   at System.Threading.Tasks.Task.InnerInvoke()
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c__DisplayClass13_1`1.<<ForEachAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<DeleteDirectory>d__19.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c.<<DeleteDirectory>b__19_1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<>c__DisplayClass13_1`1.<<ForEachAsync>b__1>d.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<DeleteDirectory>d__19.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Squirrel.Utility.<LogIfThrows>d__42.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.ValidateEnd(Task task)
+   at Squirrel.Update.Program.<Install>d__4.MoveNext()<---
+

@@ -41,8 +41,12 @@ module.exports = (sequelize: any) => {
         defaultValue: 0,
       },
       gumroad: DataTypes.JSONB,
-      expirationDate: DataTypes.DATE,
       fullName: DataTypes.JSONB,
+      sockets: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        defaultValue: null,
+      },
+      expirationDate: DataTypes.DATE,
       key: DataTypes.STRING,
     },
     {

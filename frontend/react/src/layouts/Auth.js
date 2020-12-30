@@ -29,7 +29,7 @@ const $ = window;
 $.io = require("socket.io-client/dist/socket.io");
 
 $.socket = $.io({
-  query: `type=website&terd=asd`,
+  query: `type=website`,
 });
 
 class Auth extends React.Component {

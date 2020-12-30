@@ -6,8 +6,9 @@
  */
 import { Socket, Server } from "socket.io";
 
-module.exports = async (io: Server, client: Socket) => {
-  return client.on("chat", async (data) => {
+module.exports = async (io: Server, client: any) => {
+  return client.on("chat", async (data: any) => {
+    console.log(client.request.user);
     client.to(data.id).emit("chat", data);
   });
 };

@@ -9,8 +9,6 @@ function route(router: Router) {
   isAuthenticated(router, "/grabProxyCreds"),
     isSubscribed(router, "/grabProxyCreds");
   router.route("/grabProxyCreds").post(async (req: Request, res: Response) => {
-    console.log(req.user);
-    console.log("EREK");
     let eProxy = await crypt.encrypt(
       req.cookies.nuprice,
       config.NuPrice.proxyInfo,

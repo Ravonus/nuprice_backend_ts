@@ -4,11 +4,11 @@ import bodyParser from "body-parser";
 import session from "express-session";
 import passport from "passport";
 import cookieParser from "cookie-parser";
-
 import { fp } from "./fingerprint";
 import { router } from "./router";
 import grabConf from "../config/config";
 import { grabModels, connection } from "./database";
+import fileUpload from "express-fileupload";
 import { Op } from "sequelize";
 
 const SessionStore = require("./modules/sessionStore/express-session-sequelize.js")(
@@ -77,6 +77,13 @@ async function startExpress() {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cookieParser());
   app.use(expressSession);
+
+  app.use(
+    fileUpload({
+      limits: { fileSize: 50 * 1024 * 1024 },
+    })
+  );
+
   app.use(passport.initialize());
   app.use(passport.session());
   fp(app);
@@ -102,8 +109,6 @@ async function startExpress() {
   };
 
   passport.use(strategy);
-
-  console.log(User.serializeUser.toString());
 
   passport.serializeUser(User.serializeUser());
 
