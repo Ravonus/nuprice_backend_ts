@@ -21,7 +21,6 @@ modelsFileList.map((model) => {
 });
 
 Object.keys(models).map((key: string) => {
-  console.log(key);
   const mod = models[key];
 
   // if (key === "Session") {
@@ -61,6 +60,5 @@ export async function grabModels() {
 }
 
 export function connection() {
-  console.log("AD");
   return sequelize;
 }

@@ -14,7 +14,7 @@ function route(router: Router) {
         "utf8"
       );
       conf = JSON.parse(conf);
-      console.log(conf);
+
       let version: string;
       if (conf.NuPrice.versions) version = conf.NuPrice.versions[req.query.t];
 

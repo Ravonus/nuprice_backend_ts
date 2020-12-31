@@ -188,11 +188,7 @@ async function templateBuild(
   }
 }
 
-export default async function send(
-  options: any,
-  template: any,
-  pushConfig?: any
-) {
+export async function send(options: any, template: any, pushConfig?: any) {
   let templateName: any;
   if (!pushConfig) config = await waitForConfig();
   else config = pushConfig;
@@ -287,8 +283,3 @@ export default async function send(
 function changeConfig(newConfig: any) {
   config = newConfig;
 }
-
-module.exports = {
-  send,
-  changeConfig,
-};

@@ -13,18 +13,21 @@ import needle from "needle";
 
 import { grabModels } from "../database";
 import { subscriptionCheck } from "../modules/checkGumroadSub";
+import { any } from "sequelize/types/lib/operators";
 
 const LocalStrategy = pls.Strategy;
 
 let User: any;
 let Payment: any;
 let Device: any;
+let Group: any;
 
 (async () => {
   const models = await grabModels();
   User = models.User;
   Payment = models.Payment;
   Device = models.Device;
+  Group = models.Group;
 })();
 
 function flashMsg(msg: string, done: any, req: any) {
@@ -97,8 +100,18 @@ passport.use(
           req.gumroad = gumroad.body;
         }
 
+        const customer = await Group.findOne({
+          where: { name: "customer" },
+        }).catch((e: Error) => e);
+
+        // newUser.addGroup(customer);
+
         // save the user
         const saved = await newUser.save().catch((e: any) => e);
+
+        await saved.addGroup([customer.dataValues.id], {
+          through: { selfGranted: false },
+        });
 
         if (req.body.device) {
           req.body.device.userId = saved.dataValues.id;

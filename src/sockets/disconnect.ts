@@ -4,9 +4,6 @@ import { appClients } from "../sockets";
 import sequelize from "sequelize";
 
 const User = connection().models.user;
-
-console.log("ASD", User);
-
 const clients: any = appClients;
 
 module.exports = (io: Server, client: Socket | any) => {

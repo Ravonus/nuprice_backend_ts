@@ -48,9 +48,7 @@ async function authorization(socket: any, next: any) {
 
   if (!session) return socket.disconnect();
 
-  const username = session.dataValues.data.passport.user;
-
-  console.log("USERNA<ME", username);
+  const username = session?.dataValues?.data?.passport?.user;
 
   let user: any = await db.models.user
     .findOne({ where: { username } })
@@ -58,11 +56,11 @@ async function authorization(socket: any, next: any) {
       console.log(e);
     });
 
-  socket.request.user = user.dataValues;
+  delete user.dataValues.password;
+
+  socket.request.user = user?.dataValues;
 
   if (!user) return socket.disconnect();
-
-  console.log(user.sockets, socket.id, "TERD");
 
   if (user.sockets) {
     user.sockets = sequelize.fn(
@@ -74,6 +72,11 @@ async function authorization(socket: any, next: any) {
 
   user.save();
 
+  user
+    .getGroups()
+    .then((groups: any) =>
+      groups.map((group: any) => socket.join(group.dataValues.name))
+    );
   next();
 }
 

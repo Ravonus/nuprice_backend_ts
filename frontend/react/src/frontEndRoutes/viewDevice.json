@@ -1,0 +1,9 @@
+{
+    "path": "/device",
+    "name": "view device",
+    "icon": "tim-icons icon-atom",
+    "component": "viewDevice",
+    "layout": "/dashboard",
+    "noShow": true,
+    "permissions": 24
+}

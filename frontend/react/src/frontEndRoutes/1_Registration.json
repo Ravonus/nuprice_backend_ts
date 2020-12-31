@@ -1,0 +1,7 @@
+{
+  "path": "/registration",
+  "name": "Registration",
+  "component": "Register",
+  "layout": "/auth",
+  "noShow": true
+}

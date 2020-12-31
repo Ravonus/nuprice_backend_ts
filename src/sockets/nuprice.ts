@@ -2,7 +2,6 @@ import { Server, Socket } from "socket.io";
 
 module.exports = (io: Server, client: Socket) => {
   return client.on("nuprice", (data) => {
-    console.log(client.id, data.id);
     switch (data.type) {
       case "priceChange":
         break;
@@ -17,7 +16,7 @@ module.exports = (io: Server, client: Socket) => {
 
       case "updatePricePush":
         data.type = "updatePrice";
-        console.log("HERE", data);
+
         client.to(client.id).emit("nuprice", data);
         break;
 
@@ -26,7 +25,6 @@ module.exports = (io: Server, client: Socket) => {
         break;
 
       default:
-        console.log("DA FUDGE", data);
         //   io.to(data.id).emit('nuprice', 'cook');
         client.to(data.id).emit("nuprice", data);
 

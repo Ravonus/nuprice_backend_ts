@@ -1,10 +1,12 @@
-import { Socket } from "socket.io";
+import { Server, Socket } from "socket.io";
 import geoip = require("geoip-lite");
 
-const addressInfo = {};
+let addressInfo: any = {};
 
-module.exports = (client: Socket, noAuth: boolean) => {
-  return client.on("info", async (data) => {
+module.exports = (io: Server, client: any) => {
+  if (!io && !client) return addressInfo;
+
+  return client.on("info", async (data: any) => {
     var address = client.handshake.address;
 
     if (address.includes("192.168.1") || address.includes("127.0.0.1")) {
@@ -33,6 +35,8 @@ module.exports = (client: Socket, noAuth: boolean) => {
     var geo = geoip.lookup(address);
 
     const ipInfo = { ...geo, address };
+
+    addressInfo[client.id] = { ipInfo, user: client.request.user };
 
     client.to("liveStats").emit("app", {
       [client.id]: addressInfo,

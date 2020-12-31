@@ -31,7 +31,7 @@ async function decrypt(
 
   return new Promise((resolve, reject) => {
     let str = decrypted.toString();
-    console.log(str);
+
     if (!str.includes(salt)) return reject({ error: "Bad Salt" });
 
     resolve(decrypted.toString().replace(salt, ""));

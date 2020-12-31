@@ -1,0 +1,45 @@
+{
+  "collapse": true,
+  "name": "Settings",
+  "icon": "tim-icons icon-molecule-40",
+  "permissions": 15,
+  "state": "settingsCollapse",
+  "views": [
+    {
+      "name": "Application",
+      "path": "/settings/general",
+      "mini": "G",
+      "layout": "/dashboard",
+      "component": "GeneralSettings"
+    },
+    {
+      "layout": "/dashboard",
+      "mini": "S",
+      "name": "Security",
+      "submenu": "security",
+      "path": "/settings/secuirty",
+      "component": "Settings",
+      "permissions": 3,
+      "variable": "security"
+    },
+    {
+      "layout": "/dashboard",
+      "mini": "P",
+      "name": "Profile",
+      "submenu": "profile",
+      "component": "User",
+      "permissions": 15,
+      "path": "/profile/",
+      "variable": "profile"
+    },
+    {
+      "layout": "/dashboard",
+      "mini": "N",
+      "name": "Notifications",
+      "submenu": "notifications",
+      "component": "Notifications",
+      "permissions": 15,
+      "path": "/notifications"
+    }
+  ]
+}

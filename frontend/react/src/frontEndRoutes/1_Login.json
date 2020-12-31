@@ -1,0 +1,7 @@
+{
+  "path": "/login",
+  "name": "Login",
+  "component": "Login",
+  "layout": "/auth",
+  "noShow": true
+}

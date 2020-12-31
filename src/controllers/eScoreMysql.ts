@@ -56,7 +56,7 @@ const MWS_book_feed = sequelize.define(
 
 // MWS_book_feed.findAll({ where: { asin: ['0000000019', '0000000051'] } }).then(
 //   (project) => {
-//     console.log(project)
+
 //   }
 // )
 

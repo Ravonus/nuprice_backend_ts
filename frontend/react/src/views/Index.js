@@ -45,7 +45,7 @@ class Index extends React.Component {
       if (data.status === 500) return null;
       return await data.json();
     });
-    console.log(req);
+
     if (!req) return this.props.history.push("/auth/login");
   }
 

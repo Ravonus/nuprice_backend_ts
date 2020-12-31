@@ -53,7 +53,7 @@ export const appGrab = () => app;
 
 // db.models.Session.findAll({ where: where })
 //   .then((data) => {
-//     console.log(data);
+
 //   })
 //   .catch((e) => console.log(e));
 
@@ -103,6 +103,10 @@ async function startExpress() {
       return cb(null, false, { message: "Incorrect username" });
     } else {
       const auth = await user.authenticate(password, user.password);
+      const groups = await user.getGroups();
+
+      user.groups = groups;
+
       if (auth) return cb(null, user);
       else return cb(null, false, { message: "Incorrect username" });
     }
@@ -113,7 +117,13 @@ async function startExpress() {
   passport.serializeUser(User.serializeUser());
 
   //TODO: fix this so it doees not do lookup a bunch hrrm
-  passport.deserializeUser(User.deserializeUser());
+  passport.deserializeUser(async function (username, cb) {
+    const user = await User.findOne({ where: { username } }).catch((e: Error) =>
+      console.log(e)
+    );
+    user.dataValues.groups = await user.getGroups();
+    cb(null, user);
+  });
   app.set("views", path.join(__dirname, "../", "/frontend/views"));
   app.set("view engine", "ejs");
   app.use(express.static(path.join(__dirname, "../", "frontend/public/")));

@@ -1,6 +1,6 @@
 import fs from "fs";
 import { Router, Request } from "express";
-import mailer from "../modules/mail";
+import { send } from "../modules/mail";
 
 import { isAuthenticated } from "../middleware/express/isAuthenticated";
 
@@ -10,7 +10,7 @@ function route(router: Router) {
       let body, answers, ticket;
       if (req.query.json) {
         body = JSON.parse(req.query.json);
-        console.log(body.answers);
+
         answers = body.answers;
         delete body.answers;
       }
@@ -30,15 +30,14 @@ function route(router: Router) {
             System Info: ${JSON.stringify(body)}`,
       };
 
-      console.log(req.files);
       let log = {
         // utf-8 string as an attachment
         filename: req.files.file.name,
         content: req.files.file.data,
         contentType: "application/zip",
       };
-      console.log("RANZA", replace);
-      mailer(
+
+      send(
         {
           subject: !body
             ? `An update error for ${

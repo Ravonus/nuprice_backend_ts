@@ -1,0 +1,37 @@
+{
+  "collapse": true,
+  "name": "Administration",
+  "icon": "ni ni-map-big text-primary",
+  "permissions": 3,
+  "groups": ["administrator", "moderator"],
+  "state": "administrationCollapse",
+  "views": [
+    {
+      "layout": "/admin",
+      "mini": "U",
+      "name": "Users",
+      "icon": "ni ni-map-big text-primary",
+      "component": "Administration",
+      "path": "/users",
+      "variable": "users"
+    },
+    {
+      "layout": "/admin",
+      "mini": "G",
+      "icon": "ni ni-map-big text-primary",
+      "name": "Groups",
+      "component": "Administration",
+      "path": "/groups",
+      "variable": "groups"
+    },
+    {
+      "layout": "/admin",
+      "mini": "C",
+      "icon": "ni ni-map-big text-primary",
+      "name": "Live Clients",
+      "component": "LiveClients",
+      "path": "/clients",
+      "variable": "clients"
+    }
+  ]
+}

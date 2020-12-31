@@ -84,13 +84,10 @@ module.exports = (Store) => {
 
     get(sid, callback) {
       const Session = this.Session;
-      console.log(sid, "eg");
 
       return Session.findByPk(sid)
         .then((session) => {
-          console.log(sid);
           if (session && session.data) {
-            console.log(session.data, "erg");
             return session.data;
           }
 
@@ -102,7 +99,7 @@ module.exports = (Store) => {
 
     getAll(callback) {
       const Session = this.Session;
-      console.log("WTF");
+
       return Session.findAll()
         .then((sessions) => sessions.map((session) => session.toJSON()))
         .then((session) => callback(null, session))
@@ -111,7 +108,7 @@ module.exports = (Store) => {
 
     set(sid, data, callback) {
       const Session = this.Session;
-      console.log(data);
+
       const realData = data;
       let expires = new Date(Date.now() + this.options.expiration);
 
@@ -156,7 +153,6 @@ module.exports = (Store) => {
     }
 
     touch(sid, data, callback) {
-      console.log("SID", sid);
       const Session = this.Session;
       let expires = new Date(Date.now() + this.options.expiration);
 

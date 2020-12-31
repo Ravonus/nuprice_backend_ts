@@ -22,12 +22,38 @@ import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 
-import routes from "routes.js";
+import routesImport from "routes.js";
 
+const $ = window;
+
+$.io = require("socket.io-client/dist/socket.io");
+
+function connect() {
+  $.socket = $.io({
+    query: `type=website`,
+    reconnection: true,
+    reconnectionDelay: 1000,
+    reconnectionDelayMax: 5000,
+    reconnectionAttempts: Infinity,
+  });
+}
+
+connect();
+
+$.socket.on("disconnect", () => {
+  setTimeout(() => connect(), 5000);
+});
+let routes;
 class Admin extends React.Component {
   state = {
-    sidenavOpen: true
+    sidenavOpen: true,
+    routes: [],
   };
+
+  async componentDidMount() {
+    if ($.socket) $.socket.open();
+  }
+
   componentDidUpdate(e) {
     if (e.history.pathname !== e.location.pathname) {
       document.documentElement.scrollTop = 0;
@@ -35,7 +61,26 @@ class Admin extends React.Component {
       this.refs.mainContent.scrollTop = 0;
     }
   }
-  getRoutes = routes => {
+
+  async componentWillMount() {
+    const me = await fetch("/me", {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .catch((e) => {
+        console.log(e);
+      })
+      .then((me) => me.json());
+
+    console.log(me);
+
+    routes = await routesImport(me);
+    this.setState({ routes });
+  }
+
+  getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.collapse) {
         return this.getRoutes(prop.views);
@@ -53,20 +98,21 @@ class Admin extends React.Component {
       }
     });
   };
-  getBrandText = path => {
-    for (let i = 0; i < routes.length; i++) {
-      if (
-        this.props.location.pathname.indexOf(
-          routes[i].layout + routes[i].path
-        ) !== -1
-      ) {
-        return routes[i].name;
-      }
-    }
-    return "Brand";
+  getBrandText = (path) => {
+    // console.log(path, routes.length, routes[1]);
+    // for (let i = 0; i < routes.length; i++) {
+    //   if (
+    //     this.props.location.pathname.indexOf(
+    //       routes[i].layout + routes[i].path
+    //     ) !== -1
+    //   ) {
+    //     return routes[i].name;
+    //   }
+    // }
+    // return "Brand";
   };
   // toggles collapse between mini sidenav and normal
-  toggleSidenav = e => {
+  toggleSidenav = (e) => {
     if (document.body.classList.contains("g-sidenav-pinned")) {
       document.body.classList.remove("g-sidenav-pinned");
       document.body.classList.add("g-sidenav-hidden");
@@ -75,7 +121,7 @@ class Admin extends React.Component {
       document.body.classList.remove("g-sidenav-hidden");
     }
     this.setState({
-      sidenavOpen: !this.state.sidenavOpen
+      sidenavOpen: !this.state.sidenavOpen,
     });
   };
   getNavbarTheme = () => {
@@ -90,13 +136,13 @@ class Admin extends React.Component {
       <>
         <Sidebar
           {...this.props}
-          routes={routes}
+          routes={this.state.routes}
           toggleSidenav={this.toggleSidenav}
           sidenavOpen={this.state.sidenavOpen}
           logo={{
             innerLink: "/",
             imgSrc: require("assets/img/brand/argon-react.png"),
-            imgAlt: "..."
+            imgAlt: "...",
           }}
         />
         <div
@@ -112,7 +158,7 @@ class Admin extends React.Component {
             brandText={this.getBrandText(this.props.location.pathname)}
           />
           <Switch>
-            {this.getRoutes(routes)}
+            {this.getRoutes(this.state.routes)}
             <Redirect from="*" to="/admin/dashboard" />
           </Switch>
           <AdminFooter />

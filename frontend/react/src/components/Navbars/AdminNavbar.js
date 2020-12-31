@@ -41,33 +41,33 @@ import {
   Nav,
   Container,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 
 class AdminNavbar extends React.Component {
   // function that on mobile devices makes the search open
   openSearch = () => {
     document.body.classList.add("g-navbar-search-showing");
-    setTimeout(function() {
+    setTimeout(function () {
       document.body.classList.remove("g-navbar-search-showing");
       document.body.classList.add("g-navbar-search-show");
     }, 150);
-    setTimeout(function() {
+    setTimeout(function () {
       document.body.classList.add("g-navbar-search-shown");
     }, 300);
   };
   // function that on mobile devices makes the search close
   closeSearch = () => {
     document.body.classList.remove("g-navbar-search-shown");
-    setTimeout(function() {
+    setTimeout(function () {
       document.body.classList.remove("g-navbar-search-show");
       document.body.classList.add("g-navbar-search-hiding");
     }, 150);
-    setTimeout(function() {
+    setTimeout(function () {
       document.body.classList.remove("g-navbar-search-hiding");
       document.body.classList.add("g-navbar-search-hidden");
     }, 300);
-    setTimeout(function() {
+    setTimeout(function () {
       document.body.classList.remove("g-navbar-search-hidden");
     }, 500);
   };
@@ -75,6 +75,7 @@ class AdminNavbar extends React.Component {
     return (
       <>
         <Navbar
+          style={{ marginBottom: "-1px" }}
           className={classnames(
             "navbar-top navbar-expand border-bottom",
             { "navbar-dark bg-info": this.props.theme === "dark" },
@@ -151,7 +152,7 @@ class AdminNavbar extends React.Component {
                       <ListGroupItem
                         className="list-group-item-action"
                         href="#pablo"
-                        onClick={e => e.preventDefault()}
+                        onClick={(e) => e.preventDefault()}
                         tag="a"
                       >
                         <Row className="align-items-center">
@@ -180,7 +181,7 @@ class AdminNavbar extends React.Component {
                       <ListGroupItem
                         className="list-group-item-action"
                         href="#pablo"
-                        onClick={e => e.preventDefault()}
+                        onClick={(e) => e.preventDefault()}
                         tag="a"
                       >
                         <Row className="align-items-center">
@@ -209,7 +210,7 @@ class AdminNavbar extends React.Component {
                       <ListGroupItem
                         className="list-group-item-action"
                         href="#pablo"
-                        onClick={e => e.preventDefault()}
+                        onClick={(e) => e.preventDefault()}
                         tag="a"
                       >
                         <Row className="align-items-center">
@@ -238,7 +239,7 @@ class AdminNavbar extends React.Component {
                       <ListGroupItem
                         className="list-group-item-action"
                         href="#pablo"
-                        onClick={e => e.preventDefault()}
+                        onClick={(e) => e.preventDefault()}
                         tag="a"
                       >
                         <Row className="align-items-center">
@@ -267,7 +268,7 @@ class AdminNavbar extends React.Component {
                       <ListGroupItem
                         className="list-group-item-action"
                         href="#pablo"
-                        onClick={e => e.preventDefault()}
+                        onClick={(e) => e.preventDefault()}
                         tag="a"
                       >
                         <Row className="align-items-center">
@@ -298,7 +299,7 @@ class AdminNavbar extends React.Component {
                     <DropdownItem
                       className="text-center text-info font-weight-bold py-3"
                       href="#pablo"
-                      onClick={e => e.preventDefault()}
+                      onClick={(e) => e.preventDefault()}
                     >
                       View all
                     </DropdownItem>
@@ -316,7 +317,7 @@ class AdminNavbar extends React.Component {
                       <Col
                         className="shortcut-item"
                         href="#pablo"
-                        onClick={e => e.preventDefault()}
+                        onClick={(e) => e.preventDefault()}
                         xs="4"
                         tag="a"
                       >
@@ -328,7 +329,7 @@ class AdminNavbar extends React.Component {
                       <Col
                         className="shortcut-item"
                         href="#pablo"
-                        onClick={e => e.preventDefault()}
+                        onClick={(e) => e.preventDefault()}
                         xs="4"
                         tag="a"
                       >
@@ -340,7 +341,7 @@ class AdminNavbar extends React.Component {
                       <Col
                         className="shortcut-item"
                         href="#pablo"
-                        onClick={e => e.preventDefault()}
+                        onClick={(e) => e.preventDefault()}
                         xs="4"
                         tag="a"
                       >
@@ -352,7 +353,7 @@ class AdminNavbar extends React.Component {
                       <Col
                         className="shortcut-item"
                         href="#pablo"
-                        onClick={e => e.preventDefault()}
+                        onClick={(e) => e.preventDefault()}
                         xs="4"
                         tag="a"
                       >
@@ -364,7 +365,7 @@ class AdminNavbar extends React.Component {
                       <Col
                         className="shortcut-item"
                         href="#pablo"
-                        onClick={e => e.preventDefault()}
+                        onClick={(e) => e.preventDefault()}
                         xs="4"
                         tag="a"
                       >
@@ -376,7 +377,7 @@ class AdminNavbar extends React.Component {
                       <Col
                         className="shortcut-item"
                         href="#pablo"
-                        onClick={e => e.preventDefault()}
+                        onClick={(e) => e.preventDefault()}
                         xs="4"
                         tag="a"
                       >
@@ -412,28 +413,28 @@ class AdminNavbar extends React.Component {
                     </DropdownItem>
                     <DropdownItem
                       href="#pablo"
-                      onClick={e => e.preventDefault()}
+                      onClick={(e) => e.preventDefault()}
                     >
                       <i className="ni ni-single-02" />
                       <span>My profile</span>
                     </DropdownItem>
                     <DropdownItem
                       href="#pablo"
-                      onClick={e => e.preventDefault()}
+                      onClick={(e) => e.preventDefault()}
                     >
                       <i className="ni ni-settings-gear-65" />
                       <span>Settings</span>
                     </DropdownItem>
                     <DropdownItem
                       href="#pablo"
-                      onClick={e => e.preventDefault()}
+                      onClick={(e) => e.preventDefault()}
                     >
                       <i className="ni ni-calendar-grid-58" />
                       <span>Activity</span>
                     </DropdownItem>
                     <DropdownItem
                       href="#pablo"
-                      onClick={e => e.preventDefault()}
+                      onClick={(e) => e.preventDefault()}
                     >
                       <i className="ni ni-support-16" />
                       <span>Support</span>
@@ -441,7 +442,7 @@ class AdminNavbar extends React.Component {
                     <DropdownItem divider />
                     <DropdownItem
                       href="#pablo"
-                      onClick={e => e.preventDefault()}
+                      onClick={(e) => e.preventDefault()}
                     >
                       <i className="ni ni-user-run" />
                       <span>Logout</span>
@@ -459,12 +460,12 @@ class AdminNavbar extends React.Component {
 AdminNavbar.defaultProps = {
   toggleSidenav: () => {},
   sidenavOpen: false,
-  theme: "dark"
+  theme: "dark",
 };
 AdminNavbar.propTypes = {
   toggleSidenav: PropTypes.func,
   sidenavOpen: PropTypes.bool,
-  theme: PropTypes.oneOf(["dark", "light"])
+  theme: PropTypes.oneOf(["dark", "light"]),
 };
 
 export default AdminNavbar;

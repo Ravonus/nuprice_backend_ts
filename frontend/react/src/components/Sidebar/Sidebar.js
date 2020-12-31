@@ -30,7 +30,7 @@ import {
   Navbar,
   NavItem,
   NavLink,
-  Nav
+  Nav,
 } from "reactstrap";
 
 class Sidebar extends React.Component {
@@ -38,11 +38,11 @@ class Sidebar extends React.Component {
     super(props);
     this.state = {
       collapseOpen: false,
-      ...this.getCollapseStates(props.routes)
+      ...this.getCollapseStates(props.routes),
     };
   }
   // verifies if routeName is the one active (in browser input)
-  activeRoute = routeName => {
+  activeRoute = (routeName) => {
     return this.props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
   };
   // makes the sidenav normal on hover (actually when mouse enters on it)
@@ -60,25 +60,25 @@ class Sidebar extends React.Component {
   // toggles collapse between opened and closed (true/false)
   toggleCollapse = () => {
     this.setState({
-      collapseOpen: !this.state.collapseOpen
+      collapseOpen: !this.state.collapseOpen,
     });
   };
   // closes the collapse
   closeCollapse = () => {
     this.setState({
-      collapseOpen: false
+      collapseOpen: false,
     });
   };
   // this creates the intial state of this component based on the collapse routes
   // that it gets through this.props.routes
-  getCollapseStates = routes => {
+  getCollapseStates = (routes) => {
     let initialState = {};
     routes.map((prop, key) => {
       if (prop.collapse) {
         initialState = {
           [prop.state]: this.getCollapseInitialState(prop.views),
           ...this.getCollapseStates(prop.views),
-          ...initialState
+          ...initialState,
         };
       }
       return null;
@@ -106,8 +106,11 @@ class Sidebar extends React.Component {
     }
   };
   // this function creates the links and collapses that appear in the sidebar (left menu)
-  createLinks = routes => {
+  createLinks = (routes) => {
     return routes.map((prop, key) => {
+      if (prop.noShow) {
+        return null;
+      }
       if (prop.redirect) {
         return null;
       }
@@ -121,9 +124,9 @@ class Sidebar extends React.Component {
               data-toggle="collapse"
               aria-expanded={this.state[prop.state]}
               className={classnames({
-                active: this.getCollapseInitialState(prop.views)
+                active: this.getCollapseInitialState(prop.views),
               })}
-              onClick={e => {
+              onClick={(e) => {
                 e.preventDefault();
                 this.setState(st);
               }}
@@ -183,12 +186,12 @@ class Sidebar extends React.Component {
     if (logo && logo.innerLink) {
       navbarBrandProps = {
         to: logo.innerLink,
-        tag: Link
+        tag: Link,
       };
     } else if (logo && logo.outterLink) {
       navbarBrandProps = {
         href: logo.outterLink,
-        target: "_blank"
+        target: "_blank",
       };
     }
     const scrollBarInner = (
@@ -206,7 +209,7 @@ class Sidebar extends React.Component {
           <div className="ml-auto">
             <div
               className={classnames("sidenav-toggler d-none d-xl-block", {
-                active: this.props.sidenavOpen
+                active: this.props.sidenavOpen,
               })}
               onClick={this.props.toggleSidenav}
             >
@@ -291,7 +294,7 @@ Sidebar.defaultProps = {
   routes: [{}],
   toggleSidenav: () => {},
   sidenavOpen: false,
-  rtlActive: false
+  rtlActive: false,
 };
 
 Sidebar.propTypes = {
@@ -312,10 +315,10 @@ Sidebar.propTypes = {
     // the image src of the logo
     imgSrc: PropTypes.string.isRequired,
     // the alt for the img
-    imgAlt: PropTypes.string.isRequired
+    imgAlt: PropTypes.string.isRequired,
   }),
   // rtl active, this will make the sidebar to stay on the right side
-  rtlActive: PropTypes.bool
+  rtlActive: PropTypes.bool,
 };
 
 export default Sidebar;

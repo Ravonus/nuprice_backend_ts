@@ -3,8 +3,6 @@ import needle from "needle";
 
 export function isAuthenticated(router: Router, path: string) {
   return router.use(path, async function (req: any, res: any, next: any) {
-    console.log(req.isAuthenticated());
-
     if (req.isAuthenticated()) return next("route");
 
     if (req.query.auth) {

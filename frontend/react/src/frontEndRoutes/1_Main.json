@@ -1,0 +1,7 @@
+{
+  "path": "/dashboard",
+  "name": "main",
+  "icon": "ni ni-map-big text-primary",
+  "component": "Dashboard",
+  "layout": "/admin"
+}

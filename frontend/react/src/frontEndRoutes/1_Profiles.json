@@ -1,0 +1,8 @@
+{
+  "path": "/profile/:name",
+  "name": "profile",
+  "icon": "tim-icons icon-chart-pie-36",
+  "component": "Profile",
+  "layout": "/dashboard",
+  "noShow": true
+}

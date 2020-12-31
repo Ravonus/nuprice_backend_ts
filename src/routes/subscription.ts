@@ -40,7 +40,7 @@ function route(router: Router) {
           userId: req.user.id,
           ...req.body.device,
         };
-        console.log(where);
+
         const device = await Device.findOne({
           where,
         });

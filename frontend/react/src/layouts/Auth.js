@@ -22,21 +22,22 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
 import AuthFooter from "components/Footers/AuthFooter.js";
 
-import routes from "routes.js";
-
-const $ = window;
-
-$.io = require("socket.io-client/dist/socket.io");
-
-$.socket = $.io({
-  query: `type=website`,
-});
+import routesImport from "routes.js";
 
 class Auth extends React.Component {
-  componentDidMount() {
+  state = {
+    sidenavOpen: true,
+    routes: [],
+  };
+
+  async componentDidMount() {
+    const routes = await routesImport();
+
+    console.log(routes);
+    this.setState({ routes });
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
-    this.refs.mainContent.scrollTop = 0;
+    if (!this.refs.mainContent) this.refs.mainContent.scrollTop = 0;
     document.body.classList.add("bg-default");
   }
   componentWillUnmount() {
@@ -55,6 +56,7 @@ class Auth extends React.Component {
         return this.getRoutes(prop.views);
       }
       if (prop.layout === "/auth") {
+        console.log("BUT BU TUBT", prop.path, prop.component);
         return (
           <Route
             path={prop.layout + prop.path}
@@ -68,12 +70,15 @@ class Auth extends React.Component {
     });
   };
   render() {
+    if (this.state.routes.length === 0) return null;
+
+    console.log(this.state.routes, "erg");
     return (
       <>
         <div className="main-content" ref="mainContent">
           <AuthNavbar />
           <Switch>
-            {this.getRoutes(routes)}
+            {this.getRoutes(this.state.routes)}
             <Redirect from="*" to="/auth/login" />
           </Switch>
         </div>

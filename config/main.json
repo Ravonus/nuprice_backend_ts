@@ -3,7 +3,7 @@
   "mysql-user": "root",
   "mysql-db": "nuprice_dev",
   "NuPrice": {
-    "ticket": 40,
+    "ticket": 42,
     "proxyInfo": "lum-customer-hl_d1807418-zone-static-route_err-pass_dyn:sujj44qdbqmu",
     "versions": {
       "public": "3.4.3-beta",
