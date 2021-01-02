@@ -1,11 +1,11 @@
 import { Server, Socket } from "socket.io";
 import geoip = require("geoip-lite");
+import { connection } from "../database";
+import { asyncForEach } from "../modules/asyncForEach";
 
-let addressInfo: any = {};
+const { NuPriceClient } = connection().models;
 
 module.exports = (io: Server, client: any) => {
-  if (!io && !client) return addressInfo;
-
   return client.on("info", async (data: any) => {
     var address = client.handshake.address;
 
@@ -35,11 +35,42 @@ module.exports = (io: Server, client: any) => {
     var geo = geoip.lookup(address);
 
     const ipInfo = { ...geo, address };
+    const device = JSON.parse(data);
 
-    addressInfo[client.id] = { ipInfo, user: client.request.user };
+    const nuPriceClient = {
+      ip: address,
+      city: geo.city,
+      country: geo.country,
+      region: geo.region,
+      timezone: geo.timezone,
+      socketId: client.id,
+      userId: client.request.user.id,
+      deviceSerial: device.specs.baseboard.serial,
+    };
+
+    await NuPriceClient.create(nuPriceClient).catch((e) =>
+      e.parent.code === "23505"
+        ? NuPriceClient.update(nuPriceClient, {
+            where: { deviceSerial: device.specs.baseboard.serial },
+          }).catch((e) => {})
+        : null
+    );
+
+    const NuPriceClients: any = await NuPriceClient.findAndCountAll().catch(
+      (e) => {
+        console.log(e);
+      }
+    );
+
+    await asyncForEach(NuPriceClients.rows, async (client: any, i: number) => {
+      const user = await client.getUser();
+      delete user.dataValues.sockets;
+      delete client.dataValues.userId;
+      client.dataValues.user = user.dataValues;
+    });
 
     client.to("liveStats").emit("app", {
-      [client.id]: addressInfo,
+      [client.id]: NuPriceClients,
     });
   });
 };

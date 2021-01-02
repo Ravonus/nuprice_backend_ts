@@ -39,6 +39,11 @@ Object.keys(models).map((key: string) => {
     mod.belongsTo(models.User);
   }
 
+  if (key === "NuPriceClient") {
+    mod.belongsTo(models.User);
+    mod.belongsTo(models.Device);
+  }
+
   if (key === "User") {
     // mod.hasMany(models.Session);
     mod.hasMany(models.Payment);

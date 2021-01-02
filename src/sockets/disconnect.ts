@@ -4,7 +4,7 @@ import { appClients } from "../sockets";
 import sequelize from "sequelize";
 
 const User = connection().models.user;
-const clients: any = appClients;
+const NuPriceClient = connection().models.NuPriceClient;
 
 module.exports = (io: Server, client: Socket | any) => {
   return client.on("disconnect", async () => {
@@ -23,5 +23,7 @@ module.exports = (io: Server, client: Socket | any) => {
     );
 
     user.save();
+
+    NuPriceClient.destroy({ where: { userId: user.id } });
   });
 };

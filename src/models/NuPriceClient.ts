@@ -5,29 +5,28 @@ module.exports = (sequelize: any) => {
 
   Mod.init(
     {
-      serial: {
-        type: DataTypes.STRING,
-        unique: true,
-        allowNull: false,
-        primaryKey: true,
-      },
-      model: {
+      ip: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      manufacturer: {
-        type: DataTypes.STRING,
-      },
-      type: {
+      socketId: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: "Desktop",
       },
-      lastLogon: DataTypes.DATE,
+      country: DataTypes.STRING,
+      region: DataTypes.STRING,
+      timezone: DataTypes.STRING,
+      city: DataTypes.STRING,
     },
     {
+      indexes: [
+        {
+          unique: true,
+          fields: ["userId", "deviceSerial"],
+        },
+      ],
       sequelize,
-      modelName: "device",
+      modelName: "NuPriceClient",
     }
   );
 
