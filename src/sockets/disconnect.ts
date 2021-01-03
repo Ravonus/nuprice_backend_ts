@@ -24,6 +24,18 @@ module.exports = (io: Server, client: Socket | any) => {
 
     user.save();
 
-    NuPriceClient.destroy({ where: { userId: user.id } });
+    const npClient = await NuPriceClient.findOne({
+      where: { socketId: client.id },
+    });
+
+    if (npClient) {
+      io.in("administrator").emit("notification", {
+        notificationType: "remove",
+        doc: npClient,
+      });
+
+      npClient.destroy();
+    }
+    // NuPriceClient.destroy({ where: { userId: user.id } });
   });
 };

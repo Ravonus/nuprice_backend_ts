@@ -33,7 +33,6 @@ class Auth extends React.Component {
   async componentDidMount() {
     const routes = await routesImport();
 
-    console.log(routes);
     this.setState({ routes });
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
@@ -56,7 +55,6 @@ class Auth extends React.Component {
         return this.getRoutes(prop.views);
       }
       if (prop.layout === "/auth") {
-        console.log("BUT BU TUBT", prop.path, prop.component);
         return (
           <Route
             path={prop.layout + prop.path}
@@ -72,7 +70,6 @@ class Auth extends React.Component {
   render() {
     if (this.state.routes.length === 0) return null;
 
-    console.log(this.state.routes, "erg");
     return (
       <>
         <div className="main-content" ref="mainContent">

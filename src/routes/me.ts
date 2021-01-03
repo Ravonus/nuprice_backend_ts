@@ -12,8 +12,6 @@ import { connection } from "../database";
 const Group = connection().models.group;
 const GroupUsers = connection().models.groupUsers;
 
-console.log(GroupUsers);
-
 function route(router: Router) {
   isAuthenticated(router, "/me"),
     router.get("/me", async function (req: any, res: any) {
@@ -27,15 +25,13 @@ function route(router: Router) {
       //   console.log(e);
       // });
 
-      // console.log(groups);
-
       // const customer = await Group.findOne({
       //   where: { name: "customer" },
       // }).catch((e) => e);
 
       // if (customer.id) {
       //   const user = await customer.getUser(req.user.id);
-      //   console.log(user);
+
       // }
 
       res.end(JSON.stringify(req.user));

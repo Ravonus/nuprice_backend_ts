@@ -5,29 +5,19 @@ module.exports = (sequelize: any) => {
 
   Mod.init(
     {
-      ip: {
+      type: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "ticket",
+      },
+      text: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      socketId: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        primaryKey: true,
-      },
-      country: DataTypes.STRING,
-      region: DataTypes.STRING,
-      timezone: DataTypes.STRING,
-      city: DataTypes.STRING,
     },
     {
-      indexes: [
-        {
-          unique: true,
-          fields: ["deviceSerial"],
-        },
-      ],
       sequelize,
-      modelName: "NuPriceClient",
+      modelName: "message",
     }
   );
 

@@ -58,7 +58,6 @@ export default (user) => {
       if (route.groups && user && user.groups) {
         let found = false;
         let groupNames = user.groups.map((group) => group.name);
-        console.log(groupNames, "as");
         route.groups.map((group) => {
           if (found) return;
           if (groupNames.includes(group)) {

@@ -21,30 +21,36 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
+import * as dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 import routesImport from "routes.js";
 
 const $ = window;
+
+$.dayjs = dayjs;
+$.dayjs.extend(relativeTime);
 
 $.io = require("socket.io-client/dist/socket.io");
 
 function connect() {
   $.socket = $.io({
     query: `type=website`,
-    reconnection: true,
-    reconnectionDelay: 1000,
-    reconnectionDelayMax: 5000,
-    reconnectionAttempts: Infinity,
   });
 }
 
 connect();
 
 $.socket.on("disconnect", () => {
-  setTimeout(() => connect(), 5000);
+  // setTimeout(() => connect(), 5000);
 });
 let routes;
 class Admin extends React.Component {
+  constructor(props) {
+    super(props);
+    this.notification = React.createRef(Admin);
+  }
+
   state = {
     sidenavOpen: true,
     routes: [],
@@ -52,6 +58,18 @@ class Admin extends React.Component {
 
   async componentDidMount() {
     if ($.socket) $.socket.open();
+
+    $.socket.on("notification", (data) => {
+      console.log(data);
+      if (this.notification.current.notificationPush) {
+        console.log(
+          "WTF",
+          this.notification.current,
+          this.notification.current.notificationPush
+        );
+        this.notification.current.notificationPush(data);
+      }
+    });
   }
 
   componentDidUpdate(e) {
@@ -63,6 +81,7 @@ class Admin extends React.Component {
   }
 
   async componentWillMount() {
+    console.log("NPTOIFICATION", this.notification);
     const me = await fetch("/me", {
       method: "get",
       headers: {
@@ -74,8 +93,6 @@ class Admin extends React.Component {
       })
       .then((me) => me.json());
 
-    console.log(me);
-
     routes = await routesImport(me);
     this.setState({ routes });
   }
@@ -86,10 +103,19 @@ class Admin extends React.Component {
         return this.getRoutes(prop.views);
       }
       if (prop.layout === "/admin") {
+        const Component = prop.component;
         return (
           <Route
             path={prop.layout + prop.path}
-            component={prop.component}
+            render={(props) => {
+              return (
+                <Component
+                  {...props}
+                  // ref={prop.path && setRef}
+                  ref={this.notification}
+                />
+              );
+            }}
             key={key}
           />
         );

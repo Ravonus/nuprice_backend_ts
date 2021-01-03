@@ -74,11 +74,7 @@ module.exports = (sequelize: any) => {
 
   Mod.prototype.toJSON = function () {
     var values = Object.assign({}, this.get());
-
-    console.log("VALUES", values.password);
-
     delete values.password;
-    console.log(values);
     return values;
   };
 

@@ -6,71 +6,79 @@ import { asyncForEach } from "../modules/asyncForEach";
 const { NuPriceClient } = connection().models;
 
 module.exports = (io: Server, client: any) => {
-  return client.on("info", async (data: any) => {
-    var address = client.handshake.address;
+  if (!client) console.log("RUNZA", io);
 
-    if (address.includes("192.168.1") || address.includes("127.0.0.1")) {
-      address = await new Promise((resolve, reject) => {
-        const http = require("http");
+  if (client)
+    return client.on("info", async (data: any) => {
+      var address = client.handshake.address;
 
-        var options = {
-          host: "ipv4bot.whatismyipaddress.com",
-          port: 80,
-          path: "/",
-        };
+      if (address.includes("192.168.1") || address.includes("127.0.0.1")) {
+        address = await new Promise((resolve, reject) => {
+          const http = require("http");
 
-        http
-          .get(options, function (res: any) {
-            res.on("data", function (chunk: any) {
-              resolve(chunk.toString());
+          var options = {
+            host: "ipv4bot.whatismyipaddress.com",
+            port: 80,
+            path: "/",
+          };
+
+          http
+            .get(options, function (res: any) {
+              res.on("data", function (chunk: any) {
+                resolve(chunk.toString());
+              });
+            })
+            .on("error", function (e: Error) {
+              console.log("error: " + e.message);
+              reject();
             });
-          })
-          .on("error", function (e: Error) {
-            console.log("error: " + e.message);
-            reject();
-          });
-      });
-    }
-
-    var geo = geoip.lookup(address);
-
-    const ipInfo = { ...geo, address };
-    const device = JSON.parse(data);
-
-    const nuPriceClient = {
-      ip: address,
-      city: geo.city,
-      country: geo.country,
-      region: geo.region,
-      timezone: geo.timezone,
-      socketId: client.id,
-      userId: client.request.user.id,
-      deviceSerial: device.specs.baseboard.serial,
-    };
-
-    await NuPriceClient.create(nuPriceClient).catch((e) =>
-      e.parent.code === "23505"
-        ? NuPriceClient.update(nuPriceClient, {
-            where: { deviceSerial: device.specs.baseboard.serial },
-          }).catch((e) => {})
-        : null
-    );
-
-    const NuPriceClients: any = await NuPriceClient.findAndCountAll().catch(
-      (e) => {
-        console.log(e);
+        });
       }
-    );
 
-    await asyncForEach(NuPriceClients.rows, async (client: any, i: number) => {
-      const user = await client.getUser();
-      delete user.dataValues.sockets;
-      delete client.dataValues.userId;
-      client.dataValues.user = user.dataValues;
-    });
+      var geo = geoip.lookup(address);
 
-    client.to("liveStats").emit("app", {
-      [client.id]: NuPriceClients,
+      const ipInfo = { ...geo, address };
+      const device = JSON.parse(data);
+
+      const nuPriceClient = {
+        ip: address,
+        city: geo.city,
+        country: geo.country,
+        region: geo.region,
+        timezone: geo.timezone,
+        socketId: client.id,
+        userId: client.request.user.id,
+        deviceSerial: device.specs.baseboard.serial,
+      };
+
+      const npClient: any = await NuPriceClient.create(nuPriceClient).catch(
+        async (e) => {
+          let client;
+          e.parent.code === "23505"
+            ? (client = await NuPriceClient.update(nuPriceClient, {
+                returning: true,
+                where: { deviceSerial: device.specs.baseboard.serial },
+              }).catch((e) => {
+                console.log(e);
+              }))
+            : null;
+
+          if (client) return client[1][0];
+        }
+      );
+
+      npClient.dataValues.user = await npClient.getUser();
+      delete npClient.dataValues.userId;
+      delete npClient.dataValues.user.sockets;
+
+      console.log(device);
+
+      npClient.version = device.config.version;
+      npClient.download = device.config.NuPrice.download;
+
+      io.in("administrator").emit("notification", {
+        notificationType: "add",
+        doc: [npClient],
+      });
     });
-  });
 };

@@ -31,6 +31,16 @@ Object.keys(models).map((key: string) => {
     mod.belongsTo(models.User);
   }
 
+  if (key === "Ticket") {
+    mod.belongsTo(models.User);
+    mod.belongsToMany(models.User, { through: "ticketUsers" });
+  }
+
+  if (key === "Message") {
+    mod.belongsTo(models.User);
+    mod.belongsToMany(models.User, { through: "MessageUsers" });
+  }
+
   if (key === "Group") {
     mod.belongsToMany(models.User, { through: "groupUsers" });
   }
@@ -48,6 +58,8 @@ Object.keys(models).map((key: string) => {
     // mod.hasMany(models.Session);
     mod.hasMany(models.Payment);
     mod.hasMany(models.Device);
+    mod.belongsToMany(models.Ticket, { through: "TicketUsers" });
+    mod.belongsToMany(models.Message, { through: "MessageUsers" });
     mod.belongsToMany(models.Group, { through: "groupUsers" });
   }
 });

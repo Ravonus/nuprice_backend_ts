@@ -58,8 +58,6 @@ async function authorization(socket: any, next: any) {
 
   delete user.dataValues.password;
 
-  socket.request.user = user?.dataValues;
-
   if (!user) return socket.disconnect();
 
   if (user.sockets) {
@@ -72,11 +70,14 @@ async function authorization(socket: any, next: any) {
 
   user.save();
 
-  user
-    .getGroups()
-    .then((groups: any) =>
-      groups.map((group: any) => socket.join(group.dataValues.name))
-    );
+  user.dataValues.groups = await user.getGroups().then((groups: any) =>
+    groups.map((group: any) => {
+      socket.join(group.dataValues.name);
+
+      return group.dataValues.name;
+    })
+  );
+  socket.request.user = user?.dataValues;
   next();
 }
 
@@ -91,9 +92,12 @@ export function startSocketServer() {
       message: `Socket client connected`,
       extra: ` :on ${socket.id}`,
     });
-    socketDir.map((file) => {
-      if (file !== "chatfiles") require(`${mainDir}/${file}`)(io, socket);
-    });
+
+    if (socket)
+      socketDir.map((file) => {
+        if (file.includes(".ts") || file.includes(".js"))
+          require(`${mainDir}/${file}`)(io, socket);
+      });
   });
 
   return io;

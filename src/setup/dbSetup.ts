@@ -33,6 +33,6 @@ export async function dbSetup() {
   //     where: { username: "admin" },
   //     include: Group,
   //   });
-  //   console.log(result);
+
   // }
 }
