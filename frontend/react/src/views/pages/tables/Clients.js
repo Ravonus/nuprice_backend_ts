@@ -23,6 +23,8 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import SlidingPane from "react-sliding-pane";
 import "react-sliding-pane/dist/react-sliding-pane.css";
+import InitialsAvatar from "react-initials-avatar";
+import "react-initials-avatar/lib/ReactInitialsAvatar.css";
 // react component used to create sweet alerts
 import ReactBSAlert from "react-bootstrap-sweetalert";
 // reactstrap components
@@ -84,6 +86,7 @@ class ReactBSTables extends React.Component {
     alert: null,
     logNames: [],
     clients: [],
+    messages: { direct: [] },
   };
 
   convertArrayToObject = (array, key) => {
@@ -113,6 +116,40 @@ class ReactBSTables extends React.Component {
 
   configGrab = $.socket.on("configGrab", (info) => {
     console.log(info);
+  });
+
+  async pushMessage(info) {
+    if (!info.room) info.room = "direct";
+    const messages = this.state.messages;
+
+    if (
+      messages[info.room].length === 0 ||
+      messages[info.room][messages[info.room].length - 1].username !== info.user
+    ) {
+      messages[info.room].push(info);
+    } else {
+      if (!messages[info.room][messages[info.room].length - 1].extras)
+        messages[info.room][messages[info.room].length - 1].extras = [];
+      messages[info.room][messages[info.room].length - 1].extras.push(info.msg);
+      messages[info.room][messages[info.room].length - 1].updatedAt =
+        info.updatedAt;
+      messages[info.room][messages[info.room].length - 1].createdAt =
+        info.createdAt;
+      messages[info.room][messages[info.room].length - 1].username = info.msg;
+
+      const clonedMessages = JSON.parse(JSON.stringify(messages));
+
+      clonedMessages[info.room] = [];
+      await this.setState({ messages: clonedMessages });
+    }
+
+    this.setState({ messages });
+  }
+
+  configGrab = $.socket.on("chat", async (info) => {
+    console.log(info);
+
+    this.pushMessage(info);
   });
 
   componentDidMount() {
@@ -170,6 +207,8 @@ class ReactBSTables extends React.Component {
     });
   };
   render() {
+    const { messages } = this.state;
+    console.log("THIS", this.props);
     return (
       <>
         {this.state.paneObj.user ? (
@@ -255,18 +294,25 @@ class ReactBSTables extends React.Component {
 
             <Row className="mt-2">
               {this.state.view === "chat" ? (
-                <Col className="ml-auto mr-auto col-md-9">
+                <Col
+                  style={{ height: "750px" }}
+                  className="ml-auto mr-auto col-md-9"
+                >
                   {" "}
                   <div
-                    style={{ overflow: "auto", height: "25%" }}
-                    class="card card-bordered"
+                    style={{
+                      overflow: "auto",
+                      height: "40%",
+                      maxHeight: "40%",
+                    }}
+                    className="card card-bordered"
                   >
-                    <div class="card-header">
-                      <h4 class="card-title">
+                    <div className="card-header">
+                      <h4 className="card-title">
                         <strong>Chat</strong>
                       </h4>{" "}
                       <a
-                        class="btn btn-xs btn-secondary"
+                        className="btn btn-xs btn-secondary"
                         href="#"
                         data-abc="true"
                       >
@@ -274,159 +320,213 @@ class ReactBSTables extends React.Component {
                       </a>
                     </div>
                     <div
-                      class="ps-theme-default ps-active-y"
+                      className="ps-theme-default ps-active-y"
                       id="chat-content"
                       style={{
                         overflowY: "scroll !important",
                         height: "400px !important",
                       }}
                     >
-                      <div class="media media-chat">
+                      {/* <div className="media media-chat">
                         {" "}
-                        <img
-                          class="avatar"
-                          src="https://img.icons8.com/color/36/000000/administrator-male.png"
-                          alt="..."
-                        />
-                        <div class="media-body">
+                        <InitialsAvatar name="Sherlock Holmes" />
+                        <div className="media-body">
                           <p>Hi</p>
                           <p>How are you ...???</p>
                           <p>
                             What are you doing tomorrow?
                             <br /> Can we come up a bar?
                           </p>
-                          <p class="meta">
+                          <p className="meta">
                             <time datetime="2018">23:58</time>
                           </p>
                         </div>
-                      </div>
-                      <div class="media media-meta-day">Today</div>
-                      <div class="media media-chat media-chat-reverse">
-                        <div class="media-body">
+                      </div> */}
+
+                      {!this.state.messages[this.state.paneObj.user.username]
+                        .action
+                        ? this.state.messages[
+                            this.state.paneObj.user.username
+                          ].map((message) => (
+                            <div
+                              className={
+                                message.userId === this.props.me.id
+                                  ? "media media-chat"
+                                  : "media media-chat media-chat-reverse"
+                              }
+                            >
+                              {" "}
+                              <InitialsAvatar
+                                name={`${message.fullName.first} ${message.fullName.last}`}
+                              />
+                              <div className="media-body">
+                                <p>{message.msg}</p>
+                                {message.extras
+                                  ? message.extras.map((msg) => <p>{msg}</p>)
+                                  : null}
+                                <p className="meta">
+                                  <a className="dateTxt">
+                                    {$.dayjs(message.createdAt).fromNow()}
+                                  </a>
+                                </p>
+                              </div>
+                            </div>
+                          ))
+                        : null}
+
+                      <div className="media media-meta-day">Today</div>
+                      {/* <div className="media media-chat media-chat-reverse">
+                        <div className="media-body">
                           <p>Hiii, I'm good.</p>
                           <p>How are you doing?</p>
                           <p>
                             Long time no see! Tomorrow office. will be free on
                             sunday.
                           </p>
-                          <p class="meta">
+                          <p className="meta">
                             <time datetime="2018">00:06</time>
                           </p>
                         </div>
                       </div>
-                      <div class="media media-chat">
+                      <div className="media media-chat">
                         {" "}
                         <img
-                          class="avatar"
+                          className="avatar"
                           src="https://img.icons8.com/color/36/000000/administrator-male.png"
                           alt="..."
                         />
-                        <div class="media-body">
+                        <div className="media-body">
                           <p>Okay</p>
                           <p>We will go on sunday? </p>
-                          <p class="meta">
+                          <p className="meta">
                             <time datetime="2018">00:07</time>
                           </p>
                         </div>
                       </div>
-                      <div class="media media-chat media-chat-reverse">
-                        <div class="media-body">
+                      <div className="media media-chat media-chat-reverse">
+                        <div className="media-body">
                           <p>That's awesome!</p>
                           <p>I will meet you Sandon Square sharp at 10 AM</p>
                           <p>Is that okay?</p>
-                          <p class="meta">
+                          <p className="meta">
                             <time datetime="2018">00:09</time>
                           </p>
                         </div>
                       </div>
-                      <div class="media media-chat">
+                      <div className="media media-chat">
                         {" "}
                         <img
-                          class="avatar"
+                          className="avatar"
                           src="https://img.icons8.com/color/36/000000/administrator-male.png"
                           alt="..."
                         />
-                        <div class="media-body">
+                        <div className="media-body">
                           <p>Okay i will meet you on Sandon Square </p>
-                          <p class="meta">
+                          <p className="meta">
                             <time datetime="2018">00:10</time>
                           </p>
                         </div>
                       </div>
-                      <div class="media media-chat media-chat-reverse">
-                        <div class="media-body">
+                      <div className="media media-chat media-chat-reverse">
+                        <div className="media-body">
                           <p>Do you have pictures of Matley Marriage?</p>
-                          <p class="meta">
+                          <p className="meta">
                             <time datetime="2018">00:10</time>
                           </p>
                         </div>
                       </div>
-                      <div class="media media-chat">
+                      <div className="media media-chat">
                         {" "}
                         <img
-                          class="avatar"
+                          className="avatar"
                           src="https://img.icons8.com/color/36/000000/administrator-male.png"
                           alt="..."
                         />
-                        <div class="media-body">
+                        <div className="media-body">
                           <p>Sorry I don't have. i changed my phone.</p>
-                          <p class="meta">
+                          <p className="meta">
                             <time datetime="2018">00:12</time>
                           </p>
                         </div>
                       </div>
-                      <div class="media media-chat media-chat-reverse">
-                        <div class="media-body">
+                      <div className="media media-chat media-chat-reverse">
+                        <div className="media-body">
                           <p>Okay then see you on sunday!!</p>
-                          <p class="meta">
+                          <p className="meta">
                             <time datetime="2018">00:12</time>
                           </p>
                         </div>
-                      </div>
+                      </div> */}
                       <div
-                        class="ps-scrollbar-x-rail"
+                        className="ps-scrollbar-x-rail"
                         style={{ left: "0px", bottom: "0px" }}
                       >
                         <div
-                          class="ps-scrollbar-x"
+                          className="ps-scrollbar-x"
                           tabindex="0"
                           style={{ left: "0px", bottom: "0px" }}
                         ></div>
                       </div>
                       <div
-                        class="ps-scrollbar-y-rail"
+                        className="ps-scrollbar-y-rail"
                         style={{ top: "0px", height: "0px", right: "2px" }}
                       >
                         <div
-                          class="ps-scrollbar-y"
+                          className="ps-scrollbar-y"
                           tabindex="0"
                           style={{ top: "0px", height: "2px" }}
                         ></div>
                       </div>
                     </div>
                   </div>
-                  <div class="publisher bt-1 border-light">
+                  <div className="publisher bt-1 border-light">
                     {" "}
                     <img
-                      class="avatar avatar-xs"
+                      className="avatar avatar-xs"
                       src="https://img.icons8.com/color/36/000000/administrator-male.png"
                       alt="..."
                     />{" "}
                     <input
-                      class="publisher-input"
+                      className="publisher-input"
                       type="text"
+                      id="chatInput"
                       placeholder="Write something"
                     />{" "}
-                    <span class="publisher-btn file-group">
+                    <span className="publisher-btn file-group">
                       {" "}
-                      <i class="fa fa-paperclip file-browser"></i>{" "}
+                      <i className="fa fa-paperclip file-browser"></i>{" "}
                       <input type="file" />{" "}
                     </span>{" "}
-                    <a class="publisher-btn" href="#" data-abc="true">
-                      <i class="fa fa-smile"></i>
+                    <a className="publisher-btn" href="#" data-abc="true">
+                      <i className="fa fa-smile"></i>
                     </a>{" "}
-                    <a class="publisher-btn text-info" href="#" data-abc="true">
-                      <i class="fa fa-paper-plane"></i>
+                    <a
+                      onClick={() => {
+                        const msg = document.querySelector("#chatInput").value;
+
+                        const message = {
+                          user: this.props.me.username,
+                          msg,
+                          room: this.state.paneObj.user.username,
+                          fullName: this.props.me.fullName,
+                        };
+
+                        console.log(this.props.me);
+
+                        this.pushMessage(message);
+
+                        $.socket.emit("chat", {
+                          id: this.state.paneObj.socketId,
+                          msg,
+                        });
+
+                        document.querySelector("#chatInput").value = "";
+                      }}
+                      className="publisher-btn text-info"
+                      href="#"
+                      data-abc="true"
+                    >
+                      <i className="fa fa-paper-plane"></i>
                     </a>{" "}
                   </div>
                 </Col>
@@ -458,12 +558,8 @@ class ReactBSTables extends React.Component {
                   <h5 className="mr-1">Expires:</h5>
                   <h5>
                     In{" "}
-                    {$.dayjs()
-                      .diff(
-                        $.dayjs(this.state.paneObj.user.expirationDate),
-                        "day",
-                        true
-                      )
+                    {$.dayjs(this.state.paneObj.user.expirationDate)
+                      .diff($.dayjs(), "day", true)
                       .toFixed()}{" "}
                     days
                   </h5>
@@ -474,7 +570,7 @@ class ReactBSTables extends React.Component {
             </Row>
 
             <Col className="col-12">
-              <footer style={{ position: "absolute", bottom: "15px" }}>
+              <footer style={{}}>
                 {this.state.logNames.map((name) => (
                   <Button
                     onClick={() => {
@@ -561,6 +657,11 @@ class ReactBSTables extends React.Component {
                             row,
                             rowIndex
                           ) => {
+                            const messages = this.state.messages;
+                            if (!messages[column.user.username])
+                              messages[column.user.username] = [];
+
+                            this.setState(messages);
                             await this.setState({ paneObj: column });
                             $.socket.emit("configGrab", {
                               sid: this.state.paneObj.socketId,

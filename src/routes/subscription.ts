@@ -33,7 +33,7 @@ function route(router: Router) {
       if (expired > 0)
         res.status(402).send(JSON.stringify({ error: "Payment required" }));
 
-      if (req.user.type === "single") {
+      if (!req.user.dataValues.addons["Multi-Device"]) {
         if (!req.body.device)
           return res.status(500).send(JSON.stringify({ error: "Need device" }));
         const where = {
@@ -56,8 +56,18 @@ function route(router: Router) {
           );
       }
 
-      if (req.user.type === "multi")
-        res.end(JSON.stringify({ subscription: true }));
+      if (req.user.dataValues.addons["Multi-Device"])
+        res.end(
+          JSON.stringify({
+            subscription: true,
+            addons: {
+              ...Object.keys(req.user.dataValues.addons).reduce(
+                (obj: any, item: any) => Object.assign(obj, { [item]: true }),
+                {}
+              ),
+            },
+          })
+        );
     });
 }
 

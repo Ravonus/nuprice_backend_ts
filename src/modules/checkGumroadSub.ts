@@ -91,7 +91,7 @@ export async function subscriptionCheck(
       }
       if (returnData) return { subscription: true };
       else {
-        if (req.user.type === "single") {
+        if (!req.user.dataValues.addons["Multi-Device"]) {
           if (!req.body.device)
             return res
               .status(500)
@@ -105,7 +105,16 @@ export async function subscriptionCheck(
             where,
           });
 
-          if (device) return res.end(JSON.stringify({ subscription: true }));
+          if (device)
+            return res.end(
+              JSON.stringify({
+                subscription: true,
+                addons: Object.keys(req.user.addons).reduce(
+                  (obj: any, item: any) => Object.assign(obj, { [item]: true }),
+                  {}
+                ),
+              })
+            );
           else
             return res.status(402).send(
               JSON.stringify({
@@ -116,8 +125,16 @@ export async function subscriptionCheck(
             );
         }
 
-        if (req.user.type === "multi")
-          return res.end(JSON.stringify({ subscription: true }));
+        if (req.user.dataValues.addons["Multi-Device"])
+          return res.end(
+            JSON.stringify({
+              subscription: true,
+              addons: Object.keys(req.user.addons).reduce(
+                (obj: any, item: any) => Object.assign(obj, { [item]: true }),
+                {}
+              ),
+            })
+          );
       }
     } else {
       if (returnData) return { subscription: false };

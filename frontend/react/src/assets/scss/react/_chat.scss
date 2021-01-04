@@ -301,3 +301,21 @@ textarea {
 .text-info {
   color: #48b0f7 !important;
 }
+
+pre {
+  margin: 20px 0;
+  padding: 20px;
+  background: #fafafa;
+}
+
+.round {
+  border-radius: 50%;
+}
+
+.dateTxt {
+  color: #00aaff91 !important;
+}
+
+.dateTxt:hover {
+  color: #00aaff !important;
+}

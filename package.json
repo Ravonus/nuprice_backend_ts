@@ -42,6 +42,7 @@
     "passport-local-sequelize": "^0.9.0",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
+    "react-initials-avatar": "^1.1.2",
     "react-sliding-pane": "^7.0.0",
     "req-flash": "0.0.3",
     "sequelize": "^6.3.5",

@@ -88,7 +88,11 @@ class LiveClients extends React.Component {
 
   render() {
     return (
-      <Clients ref={this.notification} clients={this.state.clients}></Clients>
+      <Clients
+        {...this.props}
+        ref={this.notification}
+        clients={this.state.clients}
+      ></Clients>
     );
   }
 }

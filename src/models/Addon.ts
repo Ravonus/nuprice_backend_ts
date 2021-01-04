@@ -5,25 +5,23 @@ module.exports = (sequelize: any) => {
 
   Mod.init(
     {
-      type: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: "support",
       },
-      urgency: {
-        type: DataTypes.INTEGER,
+      description: {
+        type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: 0,
       },
-      category: {
+      cost: {
         type: DataTypes.JSONB,
         allowNull: false,
-        defaultValue: ["default"],
       },
+      unlocks: DataTypes.JSONB,
     },
     {
       sequelize,
-      modelName: "message",
+      modelName: "addon",
     }
   );
 

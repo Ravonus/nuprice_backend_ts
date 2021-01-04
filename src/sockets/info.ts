@@ -71,8 +71,6 @@ module.exports = (io: Server, client: any) => {
       delete npClient.dataValues.userId;
       delete npClient.dataValues.user.sockets;
 
-      console.log(device);
-
       npClient.version = device.config.version;
       npClient.download = device.config.NuPrice.download;
 

@@ -122,6 +122,14 @@ async function startExpress() {
       console.log(e)
     );
     user.dataValues.groups = await user.getGroups();
+    user.dataValues.addons = await user.getAddons();
+
+    user.dataValues.addons = user.dataValues.addons.reduce(
+      (obj: any, item: any) =>
+        Object.assign(obj, { [item.name]: item.dataValues }),
+      {}
+    );
+
     cb(null, user);
   });
   app.set("views", path.join(__dirname, "../", "/frontend/views"));

@@ -7,11 +7,19 @@
 
 import { Router } from "express";
 import { isAuthenticated } from "../middleware/express/isAuthenticated";
+import { encrypt } from "../modules/crypt";
+import main from "../../config/main.json";
 
 function route(router: Router) {
-  isAuthenticated(router, "/me"),
-    router.get("/me", async function (req: any, res: any) {
-      res.end(JSON.stringify(req.user));
+  isAuthenticated(router, "/amzGrab"),
+    router.post("/amzGrab", async function (req: any, res: any) {
+      let eProxy = await encrypt(
+        req.authCode,
+        main.NuPrice.amazonSecret,
+        "1d0a8SsI4dja0dhhjdDydhad12Dd944Hdad32DA3SD4er"
+      );
+
+      res.end(JSON.stringify(eProxy));
     });
 }
 

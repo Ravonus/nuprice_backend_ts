@@ -69,11 +69,14 @@ passport.use(
         return flashMsg("That email is already taken.", done, req);
       } else {
         var newUser = new User();
+
         newUser.username = username;
         newUser.password = password;
         newUser.fullName = { first: firstName, last: lastName };
 
-        if (trial) newUser.expirationDate = dayjs().add(2, "week");
+        if (trial) {
+          newUser.expirationDate = dayjs().add(2, "week");
+        }
 
         if (req.body.key) {
           const gumroad: any = await needle(
@@ -127,6 +130,10 @@ passport.use(
           }
         }
 
+        saved.addAddon([1, 5], {
+          through: { selfGranted: false },
+        });
+
         if (trial) {
           const data = {
             type: "trial",
@@ -137,6 +144,11 @@ passport.use(
             paymentDate: dayjs().toISOString(),
           };
 
+          await saved
+            .addAddon([2, 3, 4], {
+              through: { selfGranted: false },
+            })
+            .catch((e: Error) => console.log(e));
           Payment.create(data).catch((e: any) => console.log(e));
         }
 

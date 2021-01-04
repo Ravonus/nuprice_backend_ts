@@ -54,6 +54,7 @@ class Admin extends React.Component {
   state = {
     sidenavOpen: true,
     routes: [],
+    me: {},
   };
 
   async componentDidMount() {
@@ -81,7 +82,6 @@ class Admin extends React.Component {
   }
 
   async componentWillMount() {
-    console.log("NPTOIFICATION", this.notification);
     const me = await fetch("/me", {
       method: "get",
       headers: {
@@ -94,6 +94,7 @@ class Admin extends React.Component {
       .then((me) => me.json());
 
     routes = await routesImport(me);
+    this.setState({ me });
     this.setState({ routes });
   }
 
@@ -111,7 +112,7 @@ class Admin extends React.Component {
               return (
                 <Component
                   {...props}
-                  // ref={prop.path && setRef}
+                  me={this.state.me}
                   ref={this.notification}
                 />
               );
