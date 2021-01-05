@@ -13,9 +13,19 @@ module.exports = (io: Server, client: Socket | any) => {
 
       await asyncForEach(clients.rows, async (client: any, i: number) => {
         const user = await client.getUser();
+        let addons = await user.getAddons();
+
+        console.log("DAT", addons);
+
         delete user.dataValues.sockets;
         delete client.dataValues.userId;
         client.dataValues.user = user.dataValues;
+
+        client.dataValues.addons = addons.reduce(
+          (obj: any, item: any) =>
+            Object.assign(obj, { [item.name]: item.dataValues }),
+          {}
+        );
       });
 
       io.to(client.id).emit("nuPriceClients", clients.rows);

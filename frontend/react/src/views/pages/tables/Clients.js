@@ -25,6 +25,8 @@ import SlidingPane from "react-sliding-pane";
 import "react-sliding-pane/dist/react-sliding-pane.css";
 import InitialsAvatar from "react-initials-avatar";
 import "react-initials-avatar/lib/ReactInitialsAvatar.css";
+import Select from "react-select";
+
 // react component used to create sweet alerts
 import ReactBSAlert from "react-bootstrap-sweetalert";
 // reactstrap components
@@ -85,6 +87,14 @@ class ReactBSTables extends React.Component {
     paneObj: {},
     alert: null,
     logNames: [],
+    selectedValues: [],
+    categories: [
+      { value: 1, label: "Multi-Device" },
+      { value: 2, label: "Turbo Price Pull" },
+      { value: 3, label: "Extreme Price Pull" },
+      { value: 4, label: "Ludicrous Price Pull" },
+      { value: 5, label: "Api" },
+    ],
     clients: [],
     messages: { direct: [] },
   };
@@ -112,6 +122,11 @@ class ReactBSTables extends React.Component {
   logPush = $.socket.on("logPush", (info) => {
     console.log(info);
     if (info.type === "logs") this.setState({ logNames: info.data });
+  });
+
+  addons = $.socket.on("addons", (info) => {
+    console.log(info);
+    this.setState({ selectedValues: info.value });
   });
 
   configGrab = $.socket.on("configGrab", (info) => {
@@ -166,6 +181,7 @@ class ReactBSTables extends React.Component {
     $.socket.off("nuPriceClients");
     $.socket.off("logPush");
     $.socket.off("configGrab");
+    $.socket.off("addons");
   }
 
   copyToClipboardAsTable = (el) => {
@@ -207,8 +223,8 @@ class ReactBSTables extends React.Component {
     });
   };
   render() {
-    const { messages } = this.state;
-    console.log("THIS", this.props);
+    const { messages, step3Select, categories } = this.state;
+
     return (
       <>
         {this.state.paneObj.user ? (
@@ -569,6 +585,29 @@ class ReactBSTables extends React.Component {
               </Col>
             </Row>
 
+            <Row>
+              <Col className="col-6">
+                <Select
+                  multiple={true}
+                  isMulti={true}
+                  className={`react-selec`}
+                  classNamePrefix="react-select"
+                  name=""
+                  onChange={(value, options) => {
+                    $.socket.emit("addons", {
+                      ...options,
+                      id: this.state.paneObj.user.id,
+                      sid: this.state.paneObj.socketId,
+                      value: value,
+                    });
+                  }}
+                  value={this.state.selectedValues}
+                  options={categories}
+                  placeholder="Select Category"
+                />
+              </Col>
+            </Row>
+
             <Col className="col-12">
               <footer style={{}}>
                 {this.state.logNames.map((name) => (
@@ -663,6 +702,22 @@ class ReactBSTables extends React.Component {
 
                             this.setState(messages);
                             await this.setState({ paneObj: column });
+
+                            const selectedValues = [];
+                            const { addons } = column;
+
+                            this.state.categories.map((addon) => {
+                              if (addons[addon.label])
+                                selectedValues.push({
+                                  value: addons[addon.label].id,
+                                  label: addon.label,
+                                });
+                            });
+
+                            console.log(selectedValues);
+
+                            this.setState({ selectedValues });
+
                             $.socket.emit("configGrab", {
                               sid: this.state.paneObj.socketId,
                             });
