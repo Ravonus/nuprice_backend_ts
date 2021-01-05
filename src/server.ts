@@ -84,6 +84,25 @@ async function startExpress() {
     })
   );
 
+  app.get(
+    [
+      "/admin",
+      "/admin/clients",
+      "/admin/users",
+      "/auth/login",
+      "/auth/lock",
+      "/auth/registration",
+    ],
+    (req, res) => {
+      res.sendFile(
+        path.join(__dirname, "../", "frontend/public", "index.html"),
+        (err) => {
+          if (err) res.status(500).send(err);
+        }
+      );
+    }
+  );
+
   app.use(passport.initialize());
   app.use(passport.session());
   fp(app);
