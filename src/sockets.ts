@@ -60,15 +60,15 @@ async function authorization(socket: any, next: any) {
 
   if (!user) return socket.disconnect();
 
-  if (user.sockets) {
-    user.sockets = sequelize.fn(
-      "array_append",
-      sequelize.col("sockets"),
-      socket.id
-    );
-  } else user.sockets = [socket.id];
+  // if (user.sockets) {
+  //   user.sockets = sequelize.fn(
+  //     "array_append",
+  //     sequelize.col("sockets"),
+  //     socket.id
+  //   );
+  // } else user.sockets = [socket.id];
 
-  user.save();
+  // user.save();
 
   user.dataValues.groups = await user.getGroups().then((groups: any) =>
     groups.map((group: any) => {

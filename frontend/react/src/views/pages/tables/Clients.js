@@ -32,6 +32,7 @@ import ReactBSAlert from "react-bootstrap-sweetalert";
 // reactstrap components
 import {
   Button,
+  Input,
   ButtonGroup,
   Card,
   CardHeader,
@@ -42,6 +43,8 @@ import {
 } from "reactstrap";
 // core components
 import SimpleHeader from "components/Headers/SimpleHeader.js";
+import Label from "reactstrap/lib/Label";
+import { number } from "prop-types";
 
 const $ = window;
 const pagination = paginationFactory({
@@ -88,6 +91,7 @@ class ReactBSTables extends React.Component {
     alert: null,
     logNames: [],
     selectedValues: [],
+    clientConfig: [],
     categories: [
       { value: 1, label: "Multi-Device" },
       { value: 2, label: "Turbo Price Pull" },
@@ -110,7 +114,6 @@ class ReactBSTables extends React.Component {
   };
 
   setClients(clients) {
-    console.log("WTF", this.props.clients);
     this.setState({ clients: [] });
     this.setState({ clients: clients ? clients : this.props.clients });
   }
@@ -129,9 +132,37 @@ class ReactBSTables extends React.Component {
     this.setState({ selectedValues: info.value });
   });
 
-  configGrab = $.socket.on("configGrab", (info) => {
-    console.log(info);
+  configGrab = $.socket.on("configGrab", (configDoc) => {
+    const clientConfig = [];
+
+    this.configArrayCreation(configDoc, clientConfig);
+    this.setState({ clientConfig });
   });
+
+  configArrayCreation(configDoc, configArr, parent) {
+    const cKeys = Object.keys(configDoc);
+    cKeys.map((key) => {
+      const value = configDoc[key];
+
+      if (typeof value === "object" && Array.isArray(value)) {
+      } else if (typeof value === "object") {
+        if (key === "config") key = undefined;
+        if (key === "info" || key === "extras") return;
+        this.configArrayCreation(value, configArr, key);
+        console.log("HUH?", key);
+      } else {
+        if (key === "version" || key === "name" || key === "sid") return;
+        configArr.push({
+          label: key,
+          value: configDoc[key],
+          parent,
+          oldValue: configDoc[key],
+        });
+      }
+
+      return configArr;
+    });
+  }
 
   async pushMessage(info) {
     if (!info.room) info.room = "direct";
@@ -259,18 +290,81 @@ class ReactBSTables extends React.Component {
                 <Col className="ml-auto mr-auto col-md-9"></Col>
               ) : (
                 <Col className="ml-auto mr-auto col-md-9">
-                  <input className="mx-4 my-2"></input>
-                  <input className="mx-4 my-2"></input>
-                  <input className="mx-4 my-2"></input>
-                  <input className="mx-4 my-2"></input>
-                  <input className="mx-4 my-2"></input>
-                  <input className="mx-4 my-2"></input>
-                  <input className="mx-4 my-2"></input>
-                  <input className="mx-4 my-2"></input>
-                  <input className="mx-4 my-2"></input>
-                  <input className="mx-4 my-2"></input>
-                  <input className="mx-4 my-2"></input>
-                  <input className="mx-4 my-2"></input>
+                  <Row>
+                    {this.state.clientConfig.map((config, i) => (
+                      <Col className="col-3">
+                        <Label>{config.label}</Label>
+                        {typeof config.value === "boolean" ? (
+                          <Label className="custom-toggle mr-1">
+                            <Input
+                              onChange={(el) => {
+                                console.log(config, el.target.checked);
+                                config.value = el.target.checked;
+
+                                $.socket.emit("config", {
+                                  sid: this.state.paneObj.socketId,
+                                  config,
+                                });
+                                config.oldValue = el.target.checked;
+                                this.setState({ config });
+                              }}
+                              defaultChecked={config.value}
+                              type="checkbox"
+                            />
+                            <span
+                              data-label-off="False"
+                              data-label-on="True"
+                              className="custom-toggle-slider rounded-circle"
+                            />
+                          </Label>
+                        ) : (
+                          <Input
+                            type={
+                              Number(config.value) &&
+                              typeof config.value !== "boolean"
+                                ? "number"
+                                : "text"
+                            }
+                            className="mx-1 my-1"
+                            label={config.label}
+                            value={config.value}
+                            onBlur={() => {
+                              if (config.value !== config.oldValue) {
+                                $.socket.emit("config", {
+                                  sid: this.state.paneObj.socketId,
+                                  config,
+                                });
+                                config.oldValue = config.value;
+                                this.setState({ config });
+                              }
+                            }}
+                            onKeyUp={(event) => {
+                              if (event.key === "Enter") {
+                                console.log(config.value, config.oldValue);
+                                if (config.value !== config.oldValue) {
+                                  $.socket.emit("config", {
+                                    sid: this.state.paneObj.socketId,
+                                    config,
+                                  });
+                                  config.oldValue = config.value;
+                                  this.setState({ config });
+                                }
+                              }
+                            }}
+                            onChange={(el) => {
+                              const config = this.state.clientConfig;
+
+                              config[i].value =
+                                el.target.type === "text"
+                                  ? el.target.value
+                                  : Number(el.target.value);
+                              this.setState({ config });
+                            }}
+                          ></Input>
+                        )}
+                      </Col>
+                    ))}
+                  </Row>
                 </Col>
               )}
 

@@ -10,19 +10,19 @@ module.exports = (io: Server, client: Socket | any) => {
   return client.on("disconnect", async () => {
     io.in("liveStats").emit("app", { id: client.id, type: "delete" });
 
-    const user: any = await User.findOne({
-      where: { id: client.request.user.id },
-    }).catch((e) => {
-      console.log(e);
-    });
+    // const user: any = await User.findOne({
+    //   where: { id: client.request.user.id },
+    // }).catch((e) => {
+    //   console.log(e);
+    // });
 
-    if (!user) return;
+    // if (!user) return;
 
-    user.sockets = user.sockets.filter(
-      (socket: string) => socket !== client.id
-    );
+    // user.sockets = user.sockets.filter(
+    //   (socket: string) => socket !== client.id
+    // );
 
-    user.save();
+    // user.save();
 
     const npClient = await NuPriceClient.findOne({
       where: { socketId: client.id },
