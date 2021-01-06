@@ -8,8 +8,11 @@ const { NuPriceClient } = connection().models;
 module.exports = (io: Server, client: any) => {
   if (!client) console.log("RUNZA", io);
 
+
+
   if (client)
     return client.on("info", async (data: any) => {
+      console.log("OH ITS NOT EVEN RUNNING")
       var address = client.handshake.address;
 
       if (address.includes("192.168.1") || address.includes("127.0.0.1")) {
@@ -50,9 +53,10 @@ module.exports = (io: Server, client: any) => {
         userId: client.request.user.id,
         deviceSerial: device.specs.baseboard.serial,
       };
-
+      console.log(nuPriceClient)
       const npClient: any = await NuPriceClient.create(nuPriceClient).catch(
         async (e) => {
+          console.log(e)
           let client;
           e.parent.code === "23505"
             ? (client = await NuPriceClient.update(nuPriceClient, {

@@ -23,7 +23,7 @@ const sequelizeSessionStore = new SessionStore({
 const flash = require("req-flash");
 const { cookieName } = grabConf();
 const app = express();
-const port = 1337;
+const port = 5420;
 const http = require("http");
 const server = http.createServer(app);
 const logo: any = {};
@@ -123,6 +123,14 @@ async function startExpress() {
     } else {
       const auth = await user.authenticate(password, user.password);
       const groups = await user.getGroups();
+
+      user.dataValues.addons = await user.getAddons();
+  
+      user.dataValues.addons = user.dataValues.addons.reduce(
+        (obj: any, item: any) =>
+          Object.assign(obj, { [item.name]: item.dataValues }),
+        {}
+      );
 
       user.groups = groups;
 

@@ -18,18 +18,13 @@ module.exports = (io: Server, client: Socket | any) => {
           where: { userId: data.id, addonId: data.removedValue.value },
         });
       }
-
       const addonIds = data.value.map((obj: any) => obj.value);
-
-      console.log(addonIds);
 
       let addons = await Addon.findAll({ where: { id: addonIds } });
       addons = addons.reduce(
         (obj: any, item: any) => Object.assign(obj, { [item.name]: true }),
         {}
       );
-
-      console.log(addons, data.sid);
 
       io.to(data.sid).emit("addons", addons);
     }

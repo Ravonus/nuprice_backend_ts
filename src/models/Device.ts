@@ -18,6 +18,10 @@ module.exports = (sequelize: any) => {
       manufacturer: {
         type: DataTypes.STRING,
       },
+      main:{
+        type: DataTypes.BOOLEAN,
+        defaultValue:true
+      },
       type: {
         type: DataTypes.STRING,
         allowNull: false,

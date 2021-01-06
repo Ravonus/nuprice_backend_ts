@@ -45,7 +45,7 @@ class LiveClients extends React.Component {
     const show = this.state.show;
 
     if (data.notificationType === "add") {
-      console.log("ADDS", data.doc);
+
       data.doc.map((client) => {
         client.fullName = `${client.user.fullName.first} ${
           client.user.fullName.last || ""
@@ -64,8 +64,6 @@ class LiveClients extends React.Component {
         if (!client) return;
         if (client.socketId == !data.doc.socketId) return client;
       });
-
-      console.log("CLIENTS", clients);
 
       await this.setState({ clients });
       this.notification.current.setClients();

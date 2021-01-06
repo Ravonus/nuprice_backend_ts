@@ -15,7 +15,6 @@ module.exports = async (io: Server, client: any) => {
       const messages = await Message.findAll({
         where: { ticketId: data.ticket },
       }).catch((e) => {});
-      console.log(messages);
     }
 
     data.fullName = client.request.user.fullName;

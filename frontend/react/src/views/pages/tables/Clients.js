@@ -123,12 +123,12 @@ class ReactBSTables extends React.Component {
   }
 
   logPush = $.socket.on("logPush", (info) => {
-    console.log(info);
+
     if (info.type === "logs") this.setState({ logNames: info.data });
   });
 
   addons = $.socket.on("addons", (info) => {
-    console.log(info);
+
     this.setState({ selectedValues: info.value });
   });
 
@@ -149,7 +149,7 @@ class ReactBSTables extends React.Component {
         if (key === "config") key = undefined;
         if (key === "info" || key === "extras") return;
         this.configArrayCreation(value, configArr, key);
-        console.log("HUH?", key);
+ 
       } else {
         if (key === "version" || key === "name" || key === "sid") return;
         configArr.push({
@@ -193,7 +193,7 @@ class ReactBSTables extends React.Component {
   }
 
   configGrab = $.socket.on("chat", async (info) => {
-    console.log(info);
+
 
     this.pushMessage(info);
   });
@@ -298,7 +298,7 @@ class ReactBSTables extends React.Component {
                           <Label className="custom-toggle mr-1">
                             <Input
                               onChange={(el) => {
-                                console.log(config, el.target.checked);
+                  
                                 config.value = el.target.checked;
 
                                 $.socket.emit("config", {
@@ -340,7 +340,7 @@ class ReactBSTables extends React.Component {
                             }}
                             onKeyUp={(event) => {
                               if (event.key === "Enter") {
-                                console.log(config.value, config.oldValue);
+                             
                                 if (config.value !== config.oldValue) {
                                   $.socket.emit("config", {
                                     sid: this.state.paneObj.socketId,
@@ -621,8 +621,6 @@ class ReactBSTables extends React.Component {
                           fullName: this.props.me.fullName,
                         };
 
-                        console.log(this.props.me);
-
                         this.pushMessage(message);
 
                         $.socket.emit("chat", {
@@ -746,7 +744,7 @@ class ReactBSTables extends React.Component {
                   columns={[
                     {
                       onClick: () => {
-                        console.log("RAN");
+
                       },
                       dataField: "ip",
                       text: "ip",
@@ -807,9 +805,7 @@ class ReactBSTables extends React.Component {
                                   label: addon.label,
                                 });
                             });
-
-                            console.log(selectedValues);
-
+                            
                             this.setState({ selectedValues });
 
                             $.socket.emit("configGrab", {

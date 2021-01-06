@@ -15,8 +15,6 @@ module.exports = (io: Server, client: Socket | any) => {
         const user = await client.getUser();
         let addons = await user.getAddons();
 
-        console.log("DAT", addons);
-
         delete user.dataValues.sockets;
         delete client.dataValues.userId;
         client.dataValues.user = user.dataValues;

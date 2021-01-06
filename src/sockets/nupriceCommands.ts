@@ -6,7 +6,6 @@ module.exports = (io: Server, client: any) => {
     const groups = user.groups;
 
     if (groups.includes("administrator")) {
-      console.log("RUN ADMIN");
 
       if (data.type === "ban") {
         io.to(data.sid).emit("socketSend", { type: data.type });
@@ -14,17 +13,17 @@ module.exports = (io: Server, client: any) => {
     }
 
     if (groups.includes("moderator")) {
-      console.log(data);
+
       if (data.type === "quit" || data.type === "kick") {
-        console.log(data.sid);
+
         io.to(data.sid).emit("socketSend", { type: data.type });
       }
 
-      console.log("RUN MODERATOR");
+
     }
 
     if (groups.includes("customer")) {
-      console.log("RUN CUSTOMER");
+     
     }
   });
 };

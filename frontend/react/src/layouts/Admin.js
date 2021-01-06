@@ -61,13 +61,8 @@ class Admin extends React.Component {
     if ($.socket) $.socket.open();
 
     $.socket.on("notification", (data) => {
-      console.log(data);
+
       if (this.notification.current.notificationPush) {
-        console.log(
-          "WTF",
-          this.notification.current,
-          this.notification.current.notificationPush
-        );
         this.notification.current.notificationPush(data);
       }
     });
@@ -126,7 +121,7 @@ class Admin extends React.Component {
     });
   };
   getBrandText = (path) => {
-    // console.log(path, routes.length, routes[1]);
+
     // for (let i = 0; i < routes.length; i++) {
     //   if (
     //     this.props.location.pathname.indexOf(

@@ -49,7 +49,7 @@ async function authorization(socket: any, next: any) {
   if (!session) return socket.disconnect();
 
   const username = session?.dataValues?.data?.passport?.user;
-
+  
   let user: any = await db.models.user
     .findOne({ where: { username } })
     .catch((e) => {

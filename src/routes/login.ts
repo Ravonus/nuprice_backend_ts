@@ -32,15 +32,41 @@ function route(router: Router) {
 
         if (expired > 0 && !req.body.device) sub = { subscription: false };
         else {
-          const device = await Device.findOne({
-            where: { userId: req.user.id, ...req.body.device },
+
+
+          let newAdd;
+          const devices = await Device.findAll({
+            where: { userId: req.user.id },
           }).catch((e: any) => e);
 
-          sub = {
-            subscription: device && device.id ? true : false,
-            error: "Payment required",
-            reason: "This device is not authorized. Upgrade to multi user mode",
-          };
+          if(devices.length === 0) {
+            newAdd = true;
+              Device.create({...req.body.device, userId:req.user.id}).catch((e:Error) => {})
+          }
+          console.log(req.user.dataValues)
+          if(req.user.dataValues.addons["Multi-Device"] && !newAdd) {
+            let found;
+            devices.map((device:any) => {
+              if(device.serial === req.body.serial) {  found = true;
+                sub = {subscription:true}
+              }
+            })
+
+            if(!found) Device.create({...req.body.device, main:false, userId:req.user.id}).catch((e:Error) => {});
+            sub = {subscription:true}
+          } else if(!newAdd) {
+            let found;
+            devices.map((device:any) => {
+                if(device.serial === req.body.serial && device.main) sub = {subscription:true}
+            })
+
+          } else {
+            sub = {
+              error: "Payment required",
+              reason: "This device is not authorized. Upgrade to multi user mode",
+            };
+          }
+
         }
       }
       req.user.subscription = sub;

@@ -9,7 +9,7 @@ const Addon = addon;
 module.exports = (io: Server, client: Socket | any) => {
   return client.on("config", async (data: any) => {
     if (client.rooms.has("administrator") || client.rooms.has("moderator")) {
-      console.log("RAN", data);
+
       io.to(data.sid).emit("config", data.config);
     }
   });

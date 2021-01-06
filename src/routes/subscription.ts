@@ -45,7 +45,7 @@ function route(router: Router) {
           where,
         });
 
-        if (device) return res.end(JSON.stringify({ subscription: true }));
+        if (device && device.main) return res.end(JSON.stringify({ subscription: true }));
         else
           return res.status(402).send(
             JSON.stringify({

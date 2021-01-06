@@ -1,6 +1,6 @@
 {
   "mysql-host": "localhost",
-  "mysql-user": "root",
+  "mysql-user": "nuprice",
   "mysql-db": "nuprice_dev",
   "NuPrice": {
     "amazonSecret": "5cchfIk3oN8PZGp/nQeuqYvSkTNENBtNpuM1oFlt",
